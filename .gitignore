@@ -1,3 +1,6 @@
+## Manually generated list of ignore files
+index.md_bak
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
