@@ -2,14 +2,22 @@
 #+AUTHOR: Tae Eun Kim
 #+OPTIONS: toc:nil
 
-* Blank Lecture Slides (weekly bundle)
-| Week   | Slides | Topics (Ximera naming) |
-|--------+--------+------------------------|
-| Week 1 | [[./wk01.pdf][blank]]  | UF, ROEF, WIAL         |
+* Instructor Contact Information
+ - Tae Eun Kim (Mr. Kim, Dr. Kim, Tae are all fine.)
+ - [[mailto:kim.3562@osu.edu][kim.3562@osu.edu]] (Do NOT use =buckeyemail.osu.edu= address as that inbox is unattended.)
+ - Office hours: MW 4:15PM -- 5:45PM via Zoom (link found in Carmen)
 
 * Lectures
 
-| Date             | Topic                  | Video |
-|------------------+------------------------+-------|
-| <2021-08-25 Wed> | Review of precalculus  |       |
-| <2021-08-27 Fri> | Introduction to limits |       |
+As we go on, I will fill the table below with links to recorded lectures and corresponding lecture slides, both blank and annotated.
+
+| Week | Date             | Lecture            | Slides | Notes |
+|------+------------------+--------------------+--------+-------|
+|    1 | <2021-08-25 Wed> | Lec01: UF and ROFF | [[file:lec01-UF-and-ROFF.pdf][blank]]  |       |
+|      | <2021-08-27 Fri> | Lec02: WIAL        | [[file:lec02-WIAL.pdf][blank]]  |       |
+
+* Supplementary Materials
+
+To be filled.
+
+* FAQ
