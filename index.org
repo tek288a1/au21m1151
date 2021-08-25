@@ -1,0 +1,12 @@
+#+TITLE: Autumn 2021 Math 1151 (Calculus 1)
+#+AUTHOR: Tae Eun Kim
+
+
+* Blank Lecture Slides (Weekly)
+ - [[./wk01.pdf][Week 1]]
+
+* Lecture slides
+
+| Date  | Topic                 | Video | Slides |
+|-------+-----------------------+-------+--------|
+| 08/24 | Review of Precalculus |       |        |
