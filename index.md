@@ -37,8 +37,8 @@ As we go on, I will fill the table below with links to recorded lectures and cor
 <tr>
 <td class="org-right">1</td>
 <td class="org-left"><span class="timestamp-wrapper"><span class="timestamp">&lt;2021-08-25 Wed&gt;</span></span></td>
-<td class="org-left">Lec01: UF and ROFF</td>
-<td class="org-left"><a href="lec01-UF-and-ROFF.pdf">blank</a></td>
+<td class="org-left"><a href="https://youtu.be/PlyUUcq_6sI">Lec01: UF and ROFF</a></td>
+<td class="org-left"><a href="lec01-UF-and-ROFF.pdf">blank</a> / <a href="lec01-UF-and-ROFF.notes.pdf">annotated</a></td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
