@@ -1,37 +1,48 @@
-## Welcome to GitHub Pages
+# Table of Contents
 
-You can use the [editor on GitHub](https://github.com/tek288a1/au21m1151/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+1.  [Blank Lecture Slides (Weekly)](#orgc35363b)
+2.  [Lecture slides](#org1001095)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<a id="orgc35363b"></a>
 
-```markdown
-Syntax highlighted code block
+# Blank Lecture Slides (Weekly)
 
-# Header 1
-## Header 2
-### Header 3
+-   [Week 1](./wk01.pdf)
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+<a id="org1001095"></a>
 
-**Bold** and _Italic_ and `Code` text
+# Lecture slides
 
-[Link](url) and ![Image](src)
-```
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+<colgroup>
+<col  class="org-left" />
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tek288a1/au21m1151/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+<col  class="org-left" />
 
-### Support or Contact
+<col  class="org-left" />
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Date</th>
+<th scope="col" class="org-left">Topic</th>
+<th scope="col" class="org-left">Video</th>
+<th scope="col" class="org-left">Slides</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">08/24</td>
+<td class="org-left">Review of Precalculus</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
