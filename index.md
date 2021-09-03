@@ -46,17 +46,37 @@ As we go on, I will fill the table below with links to recorded lectures and cor
 <tr>
 <td class="org-right">&#xa0;</td>
 <td class="org-left"><span class="timestamp-wrapper"><span class="timestamp">&lt;2021-08-27 Fri&gt;</span></span></td>
-<td class="org-left">Lec02: WIAL</td>
-<td class="org-left"><a href="lec02-WIAL.pdf">blank</a></td>
+<td class="org-left"><a href="https://youtu.be/cjulyIl8b50">Lec02: WIAL</a></td>
+<td class="org-left"><a href="lec02-WIAL.pdf">blank</a> / <a href="lec02-WIAL.notes.pdf">annotated</a></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left"><span class="timestamp-wrapper"><span class="timestamp">&lt;2021-08-30 Mon&gt;</span></span></td>
+<td class="org-left"><a href="https://youtu.be/4gp-tZJDOFg">Lec03: LL</a></td>
+<td class="org-left"><a href="lec03-LL.pdf">blank</a> / <a href="lec03-LL.notes.pdf">annotated</a></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><span class="timestamp-wrapper"><span class="timestamp">&lt;2021-09-01 Wed&gt;</span></span></td>
+<td class="org-left"><a href="https://youtu.be/GjeQIW6jmw0">Lec04: IF</a></td>
+<td class="org-left"><a href="lec04-IF.pdf">blank</a> / <a href="lec04-IF.notes.pdf">annotated</a></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><span class="timestamp-wrapper"><span class="timestamp">&lt;2021-09-03 Fri&gt;</span></span></td>
+<td class="org-left"><a href="https://youtu.be/LefVE1I1JUY">Lec05: ULTDA</a></td>
+<td class="org-left"><a href="lec05-ULTDA.pdf">blank</a> / <a href="lec05-ULTDA.notes.pdf">annotated</a></td>
 <td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
-
-
-# Supplementary Materials
-
-To be filled.
-
-
-# FAQ

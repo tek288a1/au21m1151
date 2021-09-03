@@ -14,10 +14,8 @@ As we go on, I will fill the table below with links to recorded lectures and cor
 | Week | Date             | Lecture            | Slides            | Notes |
 |------+------------------+--------------------+-------------------+-------|
 |    1 | <2021-08-25 Wed> | [[https://youtu.be/PlyUUcq_6sI][Lec01: UF and ROFF]] | [[file:lec01-UF-and-ROFF.pdf][blank]] / [[file:lec01-UF-and-ROFF.notes.pdf][annotated]] |       |
-|      | <2021-08-27 Fri> | Lec02: WIAL        | [[file:lec02-WIAL.pdf][blank]]             |       |
-
-* Supplementary Materials
-
-To be filled.
-
-* FAQ
+|      | <2021-08-27 Fri> | [[https://youtu.be/cjulyIl8b50][Lec02: WIAL]]        | [[file:lec02-WIAL.pdf][blank]] / [[file:lec02-WIAL.notes.pdf][annotated]] |       |
+|------+------------------+--------------------+-------------------+-------|
+|    2 | <2021-08-30 Mon> | [[https://youtu.be/4gp-tZJDOFg][Lec03: LL]]          | [[file:lec03-LL.pdf][blank]] / [[file:lec03-LL.notes.pdf][annotated]] |       |
+|      | <2021-09-01 Wed> | [[https://youtu.be/GjeQIW6jmw0][Lec04: IF]]          | [[file:lec04-IF.pdf][blank]] / [[file:lec04-IF.notes.pdf][annotated]] |       |
+|      | <2021-09-03 Fri> | [[https://youtu.be/LefVE1I1JUY][Lec05: ULTDA]]       | [[file:lec05-ULTDA.pdf][blank]] / [[file:lec05-ULTDA.notes.pdf][annotated]] |       |
