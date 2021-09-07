@@ -1,0 +1,152 @@
+\documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+% \documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 7: An Application of Limits (AAOL)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Average velocity}
+  \begin{itemize}
+  \item Let $s(t)$ denote the position of an object moving along a vertical
+    (or a horizontal) line at time $t$.
+  \item The \textbf{average velocity} of the object on the time interval $[a, b]$ is given by
+    \[
+      v_{\rm avg}
+      = \frac{\text{change in position}}{\text{change in time}}
+      = \frac{s(b)-s(a)}{b-a} \,.
+    \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}
+    Suppose you are throwing a ball straight upward into the air with velocity $64\ \text{ft}/\text{sec}$. Its height (in feet) after $t$ seconds is given by
+    \[
+      s(t) = 64t - 16t^2 \,.
+    \]
+    Answer the following questions.
+  \end{example}
+  % The relationship between $t$ and $s(t)$ can be represented via a graph. Note the parabolic relation.
+  % \begin{image}[0.4\textwidth]
+  %   \begin{tikzpicture}
+  %     \begin{axis}[
+  %       domain=0:4,
+  %       ymax=70,
+  %       ymin=0,
+  %       samples=100,
+  %       axis lines =middle, xlabel=$t$, ylabel=$s(t)$,
+  %       every axis y label/.style={at=(current axis.above origin),anchor=south},
+  %       every axis x label/.style={at=(current axis.right of origin),anchor=west}
+  %       ]
+  %       \addplot [very thick, penColor, smooth] {64*x - 16*x^2};
+  %       \addplot [textColor, dashed] plot coordinates {(2,0) (2,65)};
+  %     \end{axis}
+  %   \end{tikzpicture}
+  % \end{image}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \textbf{Questions.}
+  \begin{enumerate}
+  \item Sketch the graph of $s(t)$.
+    \begin{image}[0.4\textwidth]
+      \begin{tikzpicture}
+        \begin{axis}[
+          xmin=0, xmax=4.2, ymin=0, ymax=75,
+          unit vector ratio*=20 1 1,
+          axis lines=middle, xlabel=$t$, ylabel=$s(t)$,
+          every axis y label/.style={at=(current axis.above origin),anchor=south},
+          every axis x label/.style={at=(current axis.right of origin),anchor=west},
+          xtick={1, 2, 3, 4},
+          ytick={20, 40, 60},
+          grid=major,
+          width=3in,
+          grid style={dashed, gridColor},
+          ]
+        \end{axis}
+      \end{tikzpicture}
+    \end{image}
+  \item When will it hit the ground?
+    \seti
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{enumerate}
+    \conti
+  \item Compute the average velocity of the ball on the time interval
+    $[1.5, 3]$.
+    \seti
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{enumerate}
+    \conti
+  \item \label{v_avg1} Compute the average velocity of the ball on the time interval
+    $[t, 3]$ for $0 < t < 3$. \vfill
+  \item \label{v_avg2} Finally, do the same with $[3, t]$ for $3 < t < 4$.
+    \seti
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Instantaneous velocity}
+  \begin{itemize}
+  \item An average velocity over a shorter time interval yields a better
+    approximation of the \textbf{instantaneous velocity} at a moment
+    contained in the time interval.
+  \item This statement can be made precise
+    using limits:
+    \[
+      \underbrace{v(a)}_{\text{inst. vel.}}
+      = \lim_{t \to a}
+      \underbrace{\frac{s(t)-s(a)}{t-a}}_{\text{avg. vel.}}
+    \]
+    where $v(a)$ is the (instantaneous) velocity at time $a$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{enumerate}
+    \conti
+  \item Using the results of parts~\ref{v_avg1} and~\ref{v_avg2}, compute the
+    velocity of the ball at $t = 3$.
+  \end{enumerate}
+\end{frame}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

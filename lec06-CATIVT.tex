@@ -1,0 +1,241 @@
+\documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+% \documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 6: Continuity and the Intermediate Value Theorem (CATIVT)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Recall \ldots}
+  Recall that $f$ is said to be continuous at $x =
+  a$ if
+  \[
+    \lim_{x \to a} f(x) = f(a) .
+  \]
+  \vfill
+  Below is our up-to-date library of functions that are continuous on their natural
+  domains:
+  \begin{itemize}
+  \item Constant functions
+  \item Power functions
+  \item Polynomial functions
+  \item Rational functions
+  \item Exponential functions
+  \item Logarithmic functions
+  \item Trigonometric functions
+  \item Inverse trigonometric functions
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuity of piecewise functions}
+  Today, we will consider continuity of functions obtained by patching
+  two or more functions. In doing so, pay attention to
+  \begin{itemize}
+  \item any possible discontinuities of individual \textit{pieces}
+  \item (dis)continuity at junctions where two pieces are joined
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Consider the function defined piecewise as
+    \[
+      f(x) =
+      \begin{dcases}
+        \frac{x}{x-1} &\text{if $x<0$,}\\
+        e^{-x} + c &\text{if $x\ge 0$}.
+      \end{dcases}
+    \]
+    Find $c$ so that $f$ is continuous at $x = 0$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Consider the following piecewise defined function
+    \[
+      f(x) =
+      \begin{dcases}
+        x+4 &\text{if $x<1$,}\\
+        ax^2+bx+2 &\text{if $1\le x< 3$,}\\
+        6x+a-b &\text{if $x\ge 3$.}
+      \end{dcases}
+    \]
+    Find $a$ and $b$ so that $f$ is continuous at both $x=1$ and $x=3$.
+  \end{question}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{For those interested \ldots}
+  You can create interactive plots of such functions in
+  \textbf{Mathematica}. For example:
+
+  % \begin{tcolorbox}
+  %   \vspace{-3mm}
+  %   \begin{lstlisting}[numbers=none,frame=none]
+  %     Manipulate[
+  %     Plot[
+  %     Piecewise[{
+  %     {x/(x - 1), x < 0},
+  %     {Exp[-x] + c, x >= 0}
+  %   }],
+  %     {x, -2, 2}
+  %     ],
+  %     {c, -3, 1}
+  %     ]
+  %   \end{lstlisting}
+  %   \vspace{-3mm}
+  % \end{tcolorbox}
+
+  \begin{tcolorbox}
+    \vspace{-0mm}
+    \begin{lstlisting}[numbers=none,frame=none,basicstyle=\ttfamily]
+Manipulate[Plot[
+    Piecewise[{ {x + 4, x < 1},
+                {a*x^2 + b*x + 2, 1 <= x < 3},
+                {6*x + a - b, x >= 3} }],
+    {x, 0, 4}], {a, 0, 2}, {b, 1, 3}]
+    \end{lstlisting}
+  \end{tcolorbox}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Intermediate Value Theorem}
+  \begin{thm}[Intermediate Value Theorem]
+    If
+    \begin{itemize}
+    \item $f$ is a continuous function for all $x$ in $[a,b]$ and
+    \item $d$ is between $f(a)$ and $f(b)$,
+    \end{itemize}
+    then there is a number $c$ in $[a,b]$ such that
+    \[
+      f(c) = d \,.
+    \]
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Illustration}
+  \begin{minipage}[t]{0.45\textwidth}
+    \textbf{Case 1:} $f$ is continuous on $[a, b]$
+    \begin{image}[0.98\textwidth]
+      \begin{tikzpicture}
+        \begin{axis}[
+          domain=0:6, ymin=0, ymax=2.2,xmax=6,
+          axis lines =left, xlabel=$x$, ylabel=$y$,
+          every axis y label/.style={at=(current axis.above origin),anchor=south},
+          every axis x label/.style={at=(current axis.right of origin),anchor=west},
+          xtick={1,3.597,5}, ytick={.203,1,1.679},
+          xticklabels={$a$,$c$,$b$}, yticklabels={$f(a)$,$f(c)=d$,$f(b)$},
+          axis on top,
+          ]
+          \addplot [draw=none, fill=fill1, domain=(0:7)] {1.679} \closedcycle;
+          \addplot [draw=none, fill=background, domain=(0:7)] {.203} \closedcycle;
+          \addplot [textColor,dashed] plot coordinates {(0,1.679) (6,1.679)};
+          \addplot [textColor,dashed] plot coordinates {(0,.203) (6,.203)};
+          \addplot [textColor,dashed] plot coordinates {(5,0) (5,1.679)};
+          \addplot [textColor,dashed] plot coordinates {(1,0) (1,.203)};
+          \addplot [textColor,dashed] plot coordinates {(3.587,0) (3.597,1)};
+          \addplot [penColor2,domain=(0:6)] {1};
+          \addplot [very thick,penColor, smooth,domain=(0:2.5)] {sin(deg((x - 4)/2)) + 1.2};
+          \addplot [very thick,penColor, smooth,domain=(4:6)] {sin(deg((x - 4)/2)) + 1.2};
+          \addplot [very thick,dashed,penColor!50!background, smooth,domain=(2.5:4)] {sin(deg((x - 4)/2)) + 1.2};
+          \addplot [color=penColor!50!background,fill=penColor!50!background,only marks,mark=*] coordinates{(3.587,1)};  %% closed hole
+          \addplot [color=penColor,fill=penColor,only marks,mark=*] coordinates{(1,.203)};  %% closed hole
+          \addplot [color=penColor,fill=penColor,only marks,mark=*] coordinates{(5,1.679)};  %% closed hole
+        \end{axis}
+      \end{tikzpicture}
+    \end{image}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.45\textwidth}
+    \textbf{Case 2:} $f$ is continuous on $[a, b)$
+    \begin{image}[0.9\textwidth]
+      \begin{tikzpicture}
+        \begin{axis}[
+          domain=0:6, ymin=0, ymax=2.2,xmax=6,
+          axis lines =left, xlabel=$x$, ylabel=$y$,
+          every axis y label/.style={at=(current axis.above origin),anchor=south},
+          every axis x label/.style={at=(current axis.right of origin),anchor=west},
+          xtick={1,5}, ytick={.2,1,1.7},
+          xticklabels={$a$,$b$}, yticklabels={$f(a)$,$d$,$f(b)$},
+          axis on top,
+          ]
+          \addplot [draw=none, fill=fill1, domain=(0:7)] {1.7} \closedcycle;
+          \addplot [draw=none, fill=background, domain=(0:7)] {.2} \closedcycle;
+          \addplot [textColor,dashed] plot coordinates {(0,1.7) (6,1.7)};
+          \addplot [textColor,dashed] plot coordinates {(0,.2) (6,.2)};
+          \addplot [textColor,dashed] plot coordinates {(5,0) (5,1.7)};
+          \addplot [textColor,dashed] plot coordinates {(1,0) (1,.2)};
+          \addplot [penColor2,domain=(0:6)] {1};
+          \addplot [very thick,penColor] plot coordinates {(1,.2) (5,.7)};
+          \addplot [color=penColor,fill=penColor,only marks,mark=*] coordinates{(1,.2)};  %% closed hole
+          \addplot [color=penColor,fill=fill1,only marks,mark=*] coordinates{(5,.7)};  %% open hole
+          \addplot [color=penColor,fill=penColor,only marks,mark=*] coordinates{(5,1.7)};  %% closed hole
+        \end{axis}
+      \end{tikzpicture}
+    \end{image}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Demonstrate, using the IVT, that the function
+    \[
+      f(x)=x^3 + 3x^2+x-2
+    \]
+    has a root~\footnote{It can be shown that
+      $f(x) = (x+2)(x^2+x-1)$ and so we know precisely that $f$ has three roots
+      \[
+        -2\,,
+        \frac{-1 + \sqrt{5}}{2}\,, \text{ and }
+        \frac{-1 - \sqrt{5}}{2}\,.
+      \]} between $0$ and $1$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Explain why the functions
+    \begin{align*}
+      f(x) &= x^2\ln(x)\\
+      g(x) &= 2x\cos(\ln(x))
+    \end{align*}
+    intersect on the interval $[1,e]$.
+  \end{question}
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
