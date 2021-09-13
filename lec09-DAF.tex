@@ -1,0 +1,121 @@
+\documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+% \documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 9: Derivatives as Functions (DAF)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{The derivative as a function}
+  \begin{itemize}
+  \item Recall from last time that the \textbf{derivative} of a
+    function $f$ at a point $a$ is given by
+    \[
+      f'(a) = \lim_{h \to 0} \frac{f(a+h)-f(a)}{h} \,.
+    \]
+  \item If we replace $a$ by a variable $x$, we now have the following function:
+    \[
+      f'(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h} \,.
+    \]
+  \item This function gives us the \textit{instantaneous rate of change} at
+    any variable point $x$. Calculation of this derived function is
+    called \textbf{differentiation}.
+  \item \textbf{Notation.}
+    \[
+      f'(x) = \ddx f(x) .
+    \]
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Differentiability implies continuity}
+  Differentiability is a property that is stronger than continuity.
+
+  \begin{thm}[Differentiability implies continuity]
+    If $f$ is a differentiable function at $a$, then $f$ is continuous at $a$.
+  \end{thm}
+
+  \vfill
+  \textbf{Notes.}
+  \begin{itemize}
+  \item The contrapositive of the theorem is stated as follows:
+    \begin{quote}
+      If $f$ is not continuous at $a$, then $f$ is not
+      differentiable at $a$.
+    \end{quote}
+  \item Consequently, all differentiable functions are continuous, but
+    not all continuous functions are differentiable.
+    % \item A famous and important example of continuous but non-differentiable function is the absolute value function, $f(x) = |x|$.
+  \end{itemize}
+  % Assuming that $f'(a)$ exists, we need to show that $f$ is continuous at $a$, i.e., we need to show that
+  % \[
+  %   \lim_{x \to a} f(x) = f(a) \,.
+  % \]
+  % To this end, we will show that $\lim_{x \to a} (f(x) - f(a)) = 0$. (Why?)
+  % \begin{align*}
+  %   \lim_{x\to a} \left(f(x) - f(a)\right)
+  %   &= \lim_{x\to a} \left((x-a)\frac{f(x) - f(a)}{x-a}\right) \\
+  %   &= \left(\lim_{x\to a} (x-a) \right) \left(\lim_{x\to a}\frac{f(x) - f(a)}{x-a}\right) &\text{Limit Law.} \\
+  %   &= 0 \cdot f'(a) = 0 \,.
+  % \end{align*}
+\end{frame}
+
+
+\begin{frame}
+  \vs
+  \question{}
+  Which of the following functions are continuous but not
+  differentiable on $\RR$?
+  \begin{multicols}{2}
+    \begin{enumerate}
+    \item {$x^2$}
+    \item {$\lfloor x \rfloor$}
+    \item {$|x|$}
+    \item {$\ds \frac{\sin(x)}{x}$}
+    \end{enumerate}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Consider
+    \[
+      f(x) = \begin{dcases}
+        x^2 &\text{if $x<3$,}\\
+        mx+b &\text{if $x\ge 3$.}
+      \end{dcases}
+    \]
+    What values of $m$ and $b$ make $f$ differentiable at $x=3$?
+  \end{question}
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

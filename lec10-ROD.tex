@@ -1,0 +1,287 @@
+\documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+% \documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 10: Rules of Differentiation (ROD)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Basic rules of differentiation}
+  \begin{itemize}
+  \item We have learned the definition of derivative;
+  \item We understand that the derivative of a function can be
+    interpreted as another function;
+  \item Today, we will learn a
+    bunch of differentiation shortcuts which will help us to avoid tedious calculations and focus on more important issues.
+  \end{itemize}
+
+  % \begin{itemize}
+  % \item the constant rule
+  % \item the power rule
+  % \item the sum rule
+  % \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{thm}[Constant Rule]
+    Given a constant $c$,
+    \[
+      \ddx c = 0.
+    \]
+  \end{thm}
+
+  \vs
+  This can be confirmed easily using the definition. However, it is
+  equally important to understand this with good intuition:
+  \begin{itemize}
+  \item The constant function plots a horizontal line, so the slope of
+    the tangent line at any point is $0$.
+  \item If $s(t)$ represents the position of an object with respect to
+    time and $s(t)$ is constant, then the object is not moving, so its
+    velocity is zero. Hence $\dfrac{d}{d t} s(t) = 0$.
+  \item If $v(t)$ represents the velocity of an object with respect to
+    time and $v(t)$ is constant, then the object's acceleration is
+    zero. Hence $\dfrac{d}{dt} v(t) = 0$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  We simply state the result here. For derivation, please read the textbook.
+  \begin{thm}[Power Rule]
+    For any real number $n$,
+    \[
+      \ddx x^n = n x^{n-1} \,.
+    \]
+  \end{thm}
+
+  \vs
+  \textbf{Remark.} Note that the power rule holds for \textbf{any real
+    number} $n$. This allows us to differentiate such functions as
+  \begin{itemize}
+  \item $\ds f(x) = x^{13}$
+  \item $\ds f(x) = 1/x^4$
+  \item $\ds f(x) = \sqrt[5]{x}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{thm}[Sum Rule]
+    If $f(x)$ and $g(x)$ are differentiable and $c$ is a constant, then
+    \begin{enumerate}
+    \item\label{SR:1} $\ds \ddx \big( f(x) + g(x)\big) = f'(x) + g'(x)$,
+    \item $\ds \ddx \big( f(x) - g(x)\big) = f'(x) - g'(x)$,
+    \item $\ds \ddx \big(c\cdot f(x)\big) = c\cdot f'(x)$.
+    \end{enumerate}
+  \end{thm}
+
+  \vs
+  \begin{question}
+    Compute:
+    \[
+      \ddx \left(
+        \frac{3}{\sqrt[3]{x}} - 2\sqrt{x} + \frac{1}{x^7}
+      \right) \,.
+    \]
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The derivative of the natural exponential function}
+  \begin{itemize}
+  \item The slope of the line tangent to the  curve $y =
+    a^x$, $a > 1$, is positive.
+  \item It is easy to observe that this slope increases as $a$
+    increases.
+  \item Moreover, we can speculate that for a suitably chosen $a$, the
+    slope at $x = 0$ can be precisely 1.
+  \item Such a number does exist and is one of the most important constants in mathematics.
+  \end{itemize}
+
+  \begin{defn}
+    The number denoted by $e$, called \textbf{Euler's number}, is defined to be the number satisfying the following relation
+    \[
+      \lim_{h \to 0} \frac{e^h - 1}{h} = 1 \,.
+    \]
+    Its approximate value is $e = 2.718281828459045 \dots$.
+  \end{defn}
+\end{frame}
+
+\begin{frame}
+  \vs
+  With this definition, we can derive the following important result.
+  \begin{thm}[Derivative of the Natural Exponential Function]
+    The derivative of the natural exponential function is the natural exponential function itself.  In other words,
+    \[
+      \ddx e^x = e^x \,.
+    \]
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Find the slope of the tangent line to the graph of the function $f(x) = e^x$ at $x=5$.
+  \end{question}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The derivative of sine}
+  \begin{itemize}
+  \item In order to derive the derivative of sine function, we need the following results:
+    \[
+      \lim_{\theta \to 0} \frac{\sin \theta}{\theta} = 1
+      \qquad \text{and} \qquad
+      \lim_{\theta \to 0} \frac{\cos \theta - 1}{\theta} = 0 \,.
+    \]
+  \item We derived the first one using the squeeze theorem; the second
+    one follows from the first one. Let's derive it here.
+    \note{
+      \begin{align*}
+        \lim_{\theta\to 0}\frac{\cos(\theta)-1}{\theta}
+        &= \lim_{\theta\to 0} \left(
+          \frac{\cos(\theta)-1}{\theta} \cdot
+          \frac{\cos(\theta)+1}{\cos(\theta)+1}
+          \right)\\
+        &= \lim_{\theta\to 0}\frac{\cos^2(\theta)-1}{\theta(\cos(\theta)+1)}\\
+        &= \lim_{\theta\to 0}\frac{-\sin^2(\theta)}{\theta(\cos(\theta)+1)}\\
+        &= -\lim_{\theta\to 0}\left(
+          \frac{\sin(\theta)}{\theta}\cdot
+          \frac{\sin(\theta)}{\cos(\theta)+1}
+          \right)\\
+        &= -\lim_{\theta\to 0} \frac{\sin(\theta)}{\theta} \cdot
+          \lim_{\theta\to 0}\frac{\sin(\theta)}{\cos(\theta)+1}\\
+        &= -1 \cdot \frac{0}{2} = 0.
+      \end{align*}
+    }
+  \item In addition, let's recall the addition formula for sine:
+    \[
+      \sin(\alpha+\beta)
+      = \sin(\alpha)\cos(\beta)+\sin(\beta)\cos(\alpha) \,.
+    \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  Now, we are ready to prove the following result:
+  \begin{thm}[Derivative of Sine]
+    For any angle $\theta$ measured in radians, the derivative of $\sin(\theta)$ with respect to $\theta$ is $\cos(\theta)$.  In other words,
+    \[
+      \frac{d}{d\theta} \sin(\theta) = \cos(\theta) \,.
+    \]
+  \end{thm}
+
+  \note{
+    \begin{align*}
+      &= \lim_{h\to0} \frac{\sin(\theta)\cos(h)+\sin(h)\cos(\theta)-\sin(\theta)}{h}  \\
+      &= \lim_{h\to0} \left(\frac{\sin(\theta)\cos(h)-\sin(\theta)}{h} + \frac{\sin(h)\cos{\theta}}{h} \right)\\
+      &=\lim_{h\to0} \left(\sin (\theta)\frac{\cos(h) - 1}{h}+\cos(\theta)\frac{\sin(h)}{h}\right) \\
+      &=\lim_{h\to0} \sin (\theta)\frac{\cos(h) - 1}{h}+\lim_{h\to0}\cos(\theta)\frac{\sin(h)}{h} \\
+      &= \sin (\theta)\lim_{h\to0}\frac{\cos(h) - 1}{h}+\cos(\theta)\lim_{h\to0}\frac{\sin(h)}{h} \\
+      &=\sin(\theta) \cdot 0 + \cos(\theta) \cdot 1\\
+      &= \cos(\theta).
+    \end{align*}
+  }
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    What is the value of $x$ in the interval $[0, \pi]$ where the tangent to the graph of $f(x) = \sin(x)$ has slope $-1/2$?
+  \end{question}
+\end{frame}
+
+
+\begin{frame}
+  \vs
+  For those interested, the following diagram gives a visual interpretation of sine-differentiation.
+
+  \begin{image}[0.6\textwidth]
+    \begin{tikzpicture}
+      \begin{axis}[
+        xmin=-.1,xmax=1.1,ymin=-.1,ymax=1.1,
+        axis lines=center,
+        ticks=none,
+        width=5in,
+        unit vector ratio*=1 1 1,
+        xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        ]
+        \addplot [very thick, textColor!30!background, smooth, domain=(-.2:.2+pi/2)] ({cos(deg(x))},{sin(deg(x))});
+        \addplot [textColor,very thick] plot coordinates {(0,0) (.766,.643)}; %% 40 degrees
+        \addplot [textColor,very thick] plot coordinates {(0,0) (.766,0)}; %% bottom
+        \addplot [very thick, penColor2!30!background] {(x-.766)*(-.766/.643)+.643};
+        \addplot [textColor,dashed] plot coordinates {(0,0) (.766-.196,.643+1-.766)}; %% 40+16.98 degrees
+
+        %% \addplot [textColor!20!background] plot coordinates {(.766,.643) (1,.839)}; %% hyp
+        %% \addplot [textColor!20!background] plot coordinates {(1,.643) (1,.839)}; %% side
+        %% \addplot [textColor!20!background] plot coordinates {(.766,.643) (1,.643)}; %% bottom
+        %% \addplot [textColor!20!background,smooth, domain=(0:40)] ({.05*cos(x)+.766},{.05*sin(x)+.643}); %% angle
+        %% \node at (axis cs:.84,.670) [textColor!20!background] {\footnotesize$\theta$};
+
+        %% \addplot [textColor!20!background] plot coordinates {(.766,.643) (.766,.839)}; %% side
+        %% \addplot [textColor!20!background] plot coordinates {(.766,.839) (1,.839)}; %% bottom
+        %% \addplot [textColor!20!background,smooth, domain=(180:220)] ({.05*cos(x)+1},{.05*sin(x)+.839}); %% angle
+        %% \node at (axis cs:.926,.812) [textColor!20!background] {\footnotesize$\theta$};
+
+        \draw[rotate around={30:(.5,.5)}] (.7,.7) rectangle (.25,.25);
+
+        % \draw[textColor, rotate around={45:(.5,.5)}] (.5,.5) rectangle (.2,.2);
+
+        \addplot [penColor4,very thick] plot coordinates {(.766,.643) (.766,.643+1-.766)}; %% side
+        \addplot [textColor,very thick] plot coordinates {(.766,.643+1-.766) (.766-.196,.643+1-.766)}; %% top
+        \addplot [textColor,smooth, domain=(90:130)] ({.05*cos(x)+.766},{.05*sin(x)+.643}); %% angle
+        \addplot [very thick, textColor] plot coordinates {(.766-.196,.643+1-.766) (.766,.643)}; %% hyp
+        \node at (axis cs:.739,.717) [textColor] {\footnotesize$\theta$};
+
+        \node at (axis cs:.668,.877) [anchor=south] {\footnotesize$h\sin(\theta)$};
+        \node at (axis cs:.766,.76) [anchor=west] {\footnotesize$h\cos(\theta)$};
+        \node at (axis cs:.65,.78) [anchor=west] {\footnotesize$\approx h$};
+
+        \addplot [very thick, penColor] plot coordinates {(.766,0) (.766,.643)}; %% sin theta
+
+        \addplot [textColor, smooth, domain=(0:40)] ({.15*cos(x)},{.15*sin(x)});
+        \addplot [textColor, smooth, domain=(40:56.90)] ({.17*cos(x)},{.17*sin(x)});
+        \addplot [textColor, smooth, domain=(40:56.90)] ({.185*cos(x)},{.185*sin(x)});
+        \node at (axis cs:.15,.07) [anchor=west] {$\theta$};
+        \node at (axis cs:.15,.17) {$h$};
+        \node at (axis cs:.766,.322) [anchor=east] {$\sin(\theta)$};
+        \node at (axis cs:.383,0) [anchor=north] {$\cos(\theta)$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
