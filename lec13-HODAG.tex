@@ -1,0 +1,347 @@
+\documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+% \documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 13: Higher Order Derivatives and Graphs (HODAG)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Higher-Order Derivatives}
+
+  \begin{itemize}
+  \item The derivative of a function is often called the \textbf{first derivative};
+  \item The derivative of the derivative the \textbf{second derivative};
+  \item The derivative of the second derivative the \textbf{third derivative}, and
+    so on.
+  \item Derivatives of derivatives are called \textbf{higher-order derivatives} with the following notations:
+  \end{itemize}
+
+  \[
+    \begin{array}{rl}
+      \text{First derivative:} & \dfrac{d}{dx} f(x) = f'(x) = f^{(1)}(x). \vspace{0.3em} \\
+      \text{Second derivative:} & \dfrac{d^2}{dx^2} f(x) = f''(x) = f^{(2)}(x).\vspace{0.3em}  \\
+      \text{Third derivative:} & \dfrac{d^3}{dx^3} f(x) = f'''(x) = f^{(3)}(x).
+    \end{array}
+  \]
+\end{frame}
+
+\begin{frame}
+  \vs{}
+  \question{} Compute the first, second, and third derivatives of:
+  \begin{enumerate}
+  \item $\ds f(x) = x^2 + 3x - 8$ \vfill
+  \item $\ds g(x) = e^{2x}$ \vfill
+  \item $\ds h(x) = \sin(x^2)$ \vfill
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{First Derivatives and Monotonicity}
+  \begin{defn}[Monotonicity]
+    \begin{itemize}
+    \item We say that a function $f$ is \textbf{increasing} on an
+      interval $I$ if $f(x_{1})<f(x_{2})$ for all pairs of numbers
+      $x_{1}$, $x_{2}$ in $I$ such that $x_{1}<x_{2}$.
+    \item We say that a function $f$ is \textbf{decreasing} on an
+      interval $I$ if $f(x_{1})>f(x_{2})$ for all pairs of numbers
+      $x_{1}$, $x_{2}$ in $I$ such that $x_{1}<x_{2}$.
+    \end{itemize}
+  \end{defn}
+
+  \begin{itemize}
+  \item We say that a function is \textbf{monotonic} on an interval if
+    it is either increasing or decreasing there.
+  \item The notion of monotonicity is closely related to the
+    derivatives as they convey the slope information of tangent lines
+    to the curve.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs{}
+  \begin{thm}
+    A function $f$ is \textbf{increasing} on any interval $I$ where
+    $f'(x)>0$, for all $x$ in $I$. A function $f$ is
+    \textbf{decreasing} on any interval $I$ where $f'(x)<0$, for all
+    $x$ in $I$.
+  \end{thm}
+  \vfill
+
+  \textbf{Illustration.}
+  Here we have graphs of $f(x) = \sin(x)$, $f'(x) = \cos(x)$, and
+  $f''(x) = -\sin(x)$:
+  \begin{image}[0.8\textwidth]
+    \begin{tikzpicture}
+      \begin{axis}[
+        xmin=-6.75,xmax=6.75,ymin=-1.5,ymax=1.5,
+        axis lines=center,
+        ticks=none,
+        width=6in,
+        height=3in,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        ]
+        \addplot [very thick, penColor, samples=100,smooth,
+        domain=(-6.75:6.75)] {sin(deg(x))};
+        \addlegendentry{$f$};
+        \addplot [very thick, dashed,penColor2, samples=100,smooth, domain=(-6.75:6.75)] {cos(deg(x))};
+        \addlegendentry{$f'$};
+        \addplot [very thick, dotted,penColor3, samples=100,smooth, domain=(-6.75:6.75)] {-sin(deg(x))};
+        \addlegendentry{$f''$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+\begin{frame}
+  \vs{}
+
+  \question{} Below we have unlabeled graphs of $f$, $f'$, and
+  $f''$. Identify each curve above as a graph of $f$, $f'$, or $f''$.
+
+  \begin{image}[0.8\textwidth]
+    \begin{tikzpicture}
+      \begin{axis}[
+        domain=-4:4,
+        ticks=none,
+        ymax=2, ymin=-2,
+        xmax=4, xmin=-4,
+        axis lines =middle,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        width=6in,
+        height=3in,
+        ]
+        \addplot [very thick, penColor,smooth,samples=100] {2/(.75*sqrt(2*pi))*exp(-((x)^2)/(2*.75^2)) *(-x)/(.75^2)};
+        \addlegendentry{$A$};
+        \addplot [very thick, dashed,penColor,smooth,samples=100] {2*gauss(0,.75)};
+        \addlegendentry{$B$};
+        \addplot [very thick, dotted,penColor,smooth,samples=100] {2/(.75*sqrt(2*pi))*exp(-((x)^2)/(2*.75^2)) *(-1)/(.75^2) +
+          2/(.75*sqrt(2*pi))*exp(-((x)^2)/(2*.75^2)) *(x^2)/(.75^4)};
+        \addlegendentry{$C$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Second Derivatives and Concavity}
+  \begin{defn}[Concavity]
+    Let $f$ be a function differentiable on an open interval $I$.
+    \begin{itemize}
+    \item We say that the graph of $f$ is \textbf{concave up} on $I$
+      if $f'$ is \textbf{increasing} on $I$.
+    \item We say that the graph of $f$ is \textbf{concave down} on $I$
+      if $f'$ is \textbf{decreasing} on $I$.
+    \end{itemize}
+  \end{defn}
+  \vfill
+  \textbf{Illustration.}
+  \begin{image}[0.7\textwidth]
+    \begin{tikzpicture}
+      \draw [penColor,  ultra thick,domain=180:270] plot ({2*cos(\x)+4},{9-2*sin(\x)});
+      \draw [penColor, ultra thick,domain=270:360] plot ({2*cos(\x)+8}, {2*sin(\x)+11});
+      \draw [color=red,thick, domain=1.92:2.2] plot({\x},{cot(193)*(\x-(2*cos(193)+4))+9-2*sin(193)});
+      \draw [color=red, thick, domain=2.3:3.1] plot({\x},{cot(225)*(\x-(2*cos(225)+4))+9-2*sin(225)});
+      \draw [color=red, thick, domain=3.19:4.2] plot({\x},{cot(260)*(\x-(2*cos(260)+4))+9-2*sin(260)});
+      \draw [color=red, thick, domain=7.8:9.01] plot({\x},{-cot(280)*(\x-(2*cos(280)+8))+11+2*sin(280)});
+      \draw [color=red, thick, domain=9.05:9.79] plot({\x},{-cot(315)*(\x-(2*cos(315)+8))+11+2*sin(315)});
+      \draw [color=red, thick, domain=9.82:10.08] plot({\x},{-cot(347)*(\x-(2*cos(347)+8))+11+2*sin(347)});
+      \node at (3,7.5) [text width=5cm] {
+        The function $f$ is increasing, while the rate itself is decreasing.
+        In this case the curve  $y=f(x)$ is \dfn{concave down}.};
+      \node at (9,7.5) [text width=5cm] {
+        The function $g$ is increasing, while the rate itself is increasing.
+        In this case the curve  $y=g(x)$ is \dfn{concave up}.};
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+\begin{frame}
+  \vs{}
+  We know from the previous section that
+  \begin{center}
+    $f'$ is increasing/decreasing when its derivative $f''$ is
+    positive/negative.
+  \end{center}
+  In other words, the second derivatives contain concavity information
+  as summarized in the following theorem.
+
+  \begin{thm}[Test for concavity]
+    Let $I$ be an open interval.
+    \begin{enumerate}
+    \item If $f''(x)>0$ for all $x$ in $I$, then the graph of $f$ is  concave up on $I$.
+    \item If $f''(x)<0$ for all $x$ in $I$, then the graph of $f$ is  concave down on $I$.
+    \end{enumerate}
+  \end{thm}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Summary: Derivatives and Graphs}
+  % \vs{}
+  % By considering signs of first and second derivatives of a function,
+  % we can describe a general shape/behavior of its graph quite well as
+  % summarized below.
+
+  \begin{image}[0.7\textwidth]
+    \begin{tikzpicture}
+      \draw (0,0) -- (0,12);
+      \draw (0,0) -- (12,0);
+      \draw (6,0) -- (6,12);
+      \draw (0,6) -- (12,6);
+      \draw (12,0) -- (12,12);
+      \draw (0,12) -- (12,12);
+
+      \node at (-1.3,9) {\Large$f''(x)>0$};
+      \node at (-1.3,3) {\Large$f''(x)<0$};
+      \node at (3,12.4) {\Large$f'(x)<0$};
+      \node at (9,12.4) {\Large$f'(x)>0$};
+
+      \draw [penColor,ultra thick,domain=180:270] plot ({2*cos(\x)+4}, {2*sin(\x)+11});
+      \draw [penColor,ultra thick,domain=270:360] plot ({2*cos(\x)+8}, {2*sin(\x)+11});
+      \draw [penColor,ultra thick,domain=0:90] plot ({2*cos(\x)+2}, {2*sin(\x)+3});
+      \draw [penColor,ultra thick,domain=180:90] plot ({2*cos(\x)+10}, {2*sin(\x)+3});
+
+      \node at (3,7.5) [text width=5cm] {\large
+        The function $f$ is decreasing, while the rate itself is increasing.
+        In this case the curve $y=f(x)$ is \dfn{concave up}.};
+
+      \node at (9,7.5) [text width=5cm] {\large
+        The function $f$ is increasing, while the rate itself is increasing.
+        In this case the curve $y=f(x)$ is \dfn{concave up}.};
+
+      \node at (3,1.5) [text width=5cm] {\large
+        The function $f$  is decreasing, while the rate itself is decreasing.
+        In this case the curve  $y=f(x)$ is \dfn{concave down}.};
+
+      \node at (9,1.5) [text width=5cm] {\large
+        The function $f$ is increasing, while the rate itself is decreasing.
+        In this case the curve $y=f(x)$ is \dfn{concave down}.};
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+\begin{frame}
+  \vs{}
+
+  \question{ } Find the intervals on which $f$ is increasing/decreasing
+  and concave up/down and plot its graph.
+  \[
+    f(x) = x^3 - x^2 - 4x + 4 \,.
+  \]
+
+  \begin{image}[0.8\textwidth]
+    \begin{tikzpicture}
+      \begin{axis}[
+        domain=-4:4,
+        % ticks=none,
+        ymax=10, ymin=-10,
+        xmax=2.5, xmin=-2.5,
+        axis lines =middle,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        width=6in,
+        height=4in,
+        grid=major,
+        grid style={dashed, gridColor},
+        ]
+        % \addplot [very thick, penColor,smooth,samples=100] {x^3 - x^2 -
+        % 4*x + 4};
+        % \addlegendentry{$f$};
+        % \addplot [very thick, dashed,penColor2,smooth,samples=100] {3*x^2
+        % - 2*x - 4};
+        % \addlegendentry{$f'$};
+        % \addplot [very thick, dotted,penColor3,smooth,samples=100] {6*x-2};
+        % \addlegendentry{$f''$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+  \note{
+    \begin{image}[0.8\textwidth]
+      \begin{tikzpicture}
+        \begin{axis}[
+          domain=-4:4,
+          % ticks=none,
+          ymax=10, ymin=-10,
+          xmax=2.5, xmin=-2.5,
+          axis lines =middle,
+          every axis y label/.style={at=(current axis.above origin),anchor=south},
+          every axis x label/.style={at=(current axis.right of origin),anchor=west},
+          width=6in,
+          height=3in,
+          ]
+          \addplot [very thick, penColor,smooth,samples=100] {x^3 - x^2 -
+            4*x + 4};
+          \addlegendentry{$f$};
+          \addplot [very thick, dashed,penColor2,smooth,samples=100] {3*x^2
+            - 2*x - 4};
+          \addlegendentry{$f'$};
+          \addplot [very thick, dotted,penColor3,smooth,samples=100] {6*x-2};
+          \addlegendentry{$f''$};
+        \end{axis}
+      \end{tikzpicture}
+    \end{image}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example from Physics}
+  \begin{block}{Motion with constant acceleration}
+    We know from physics that the motion of an object with constant
+    acceleration $a$ is described by the following formulas:
+    \begin{alignat*}{2}
+      \text{position:}&\qquad& x(t) & = x_0 + v_0t + \frac{1}{2}at^2 \,, \\
+      \text{velocity:}&\qquad& v(t) & = v_0 + at \,,
+    \end{alignat*}
+    where $x_0$ and $v_0$ are the initial position and velocity
+    respectively.
+  \end{block}
+  In general,
+  \begin{itemize}
+  \item the derivative of the position function $x(t)$ is the velocity
+    function $v(t)$, i.e., $v(t) = x'(t)$;
+  \item the derivative of the velocity function $v(t)$ is the
+    acceleration function $a(t)$, i.e. $a(t) = v'(t) = x''(t)$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs{}
+  \question{}
+  The position of a moving particle is given by
+  \[
+    s(t) = 36t^2 - 7t^3 \,.
+  \]
+  Find a formula for its acceleration.
+\end{frame}
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

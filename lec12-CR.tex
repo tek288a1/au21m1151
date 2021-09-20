@@ -1,0 +1,129 @@
+\documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+% \documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 12: Chain Rule (CR)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Chain Rule}
+  % \begin{itemize}
+  % \item The \textbf{chain rule} spells out the method of differentiating composite
+  %   functions, that is, functions in the form
+  %   \[
+  %     (f \circ g) (x) = f( g(x) ) \,.
+  %   \]
+  %   % \item The idea is that the derivative of the composite function can
+  %   %   be written in terms of derivatives of individual constituent
+  %   %   functions.
+  % \end{itemize}
+  The \textbf{chain rule} spells out the method of differentiating composite functions.
+  \begin{thm}[Chain Rule]
+    If $f$ and $g$ are differentiable, then
+    \[
+      \ddx f(g(x)) = f'(g(x))g'(x) \,.
+    \]
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute $\ds \ddx \sin(1+2x)$.
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute $\ds \ddx \sqrt{1+\sqrt{x}}$.
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute $\ds \ddx e^{\sin(x^2)}$.
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Derive the quotient rule using the power rule, the
+  product rule, and the chain rule.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivatives of trigonometric functions}
+  \begin{itemize}
+  \item At the moment, we only know that $\ddx \sin(x) = \cos(x)$.
+    % \[
+    %   \ddx \sin(x) = \cos(x) \,.
+    % \]
+  \item This one fact along with other derivative {``shortcuts''} will
+    give us the derivative formulas for all other standard trigonometric
+    functions.
+  \end{itemize}
+
+  \begin{thm}[Derivatives of Trigonometric Functions] \hfill
+    \begin{multicols}{2}
+      \begin{itemize}
+      \item $\ds \ddx \sin(x) = \cos(x)$.
+      \item $\ds \ddx \sec(x) = \sec(x)\tan(x)$.
+      \item $\ds \ddx \tan(x) = \sec^2(x)$.
+      \item $\ds \ddx \cos(x) = -\sin(x)$.
+      \item $\ds \ddx \csc(x) = -\csc(x)\cot(x)$.
+      \item $\ds \ddx \cot(x) = -\csc^2(x)$.
+      \end{itemize}
+    \end{multicols}
+    \vspace{0.5em}
+  \end{thm}
+
+  \note{
+    \begin{itemize}
+    \item For cosine, apply the chain rule to the identity $\cos(x) = \sin(\pi/2-x)$.
+    \item For tangent, use the quotient rule to the identity $\tan(x) = \sin(x)/\cos(x)$.
+    \item For secant, write $\sec(x)$ as $(\cos(x))^{-1}$ and use the power rule and the chain rule.
+    \item Cosecant and cotangent functions are handled analogously.
+    \end{itemize}
+  }
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute $\ds \eval{\ddx \cos \left( \frac{x^3}{2}
+      \right)}_{x=\sqrt[3]{\pi}}$.
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute $\ds \ddx \left( \frac{5x \tan(x)}{x^2-3} \right)$.
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute $\ds \eval{\ddx \left( \csc(x)\cot(x) \right)}_{x=\pi/3}$.
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

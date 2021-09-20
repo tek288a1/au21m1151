@@ -1,0 +1,130 @@
+\documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+% \documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 11: Product Rule and Quotient Rule (PRAQR)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Motivation}
+  \vs
+  \question{} Let $f(x)=(x^2+1)$ and $g(x)=(x^3-3x)$. Suppose that
+  you want to compute
+  \[
+    \ddx [f(x)g(x)] \,.
+  \]
+  \begin{itemize}
+  \item We can proceed by expanding $f(x)g(x)$ then differentiating
+    the result using the sum rule and power rule.
+  \item This can get very tedious.
+  \item At times, the strategy may not even be applicable.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Product Rule}
+  \begin{thm}[Product Rule]
+    If $f$ and $g$ are differentiable, then
+    \[
+      \ddx [f(x)g(x)] = f(x)g'(x)+f'(x)g(x) \,.
+    \]
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \vs
+  Let's revisit the opening example: \\ \vspace{0.5em}
+  \question{}  Let $f(x)=(x^2+1)$ and $g(x)=(x^3-3x)$. Using the
+  product rule, compute
+  \[
+    \ddx [f(x)g(x)] \,.
+  \]
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute
+  \[
+    \ddx(xe^x-e^x) \,.
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quotient Rule}
+  \begin{thm}[Quotient Rule]
+    If $f$ and $g$ are differentiable, then
+    \[
+      \ddx \frac{f(x)}{g(x)} = \frac{f'(x)g(x)-f(x)g'(x)}{g(x)^2}.
+    \]
+  \end{thm}
+
+  \begin{itemize}
+  \item Viewing the quotient as a product $f(x) (1/g(x))$, we can use the
+    product rule to derive the above.
+  \item But in order to do that, we need to know what $\ddx (1/g(x))$
+    is.
+  \end{itemize}
+
+  \note{
+  \begin{align*}
+    \lim_{h \to 0} \left\{
+    \frac{1}{h} \left( \frac{1}{g(x+h)} - \frac{1}{g(x)} \right)
+    \right\}
+    & = \lim_{h \to 0} \left\{
+      \frac{1}{h} \frac{g(x) - g(x+h)}{g(x+h)g(x)}
+      \right\} \\
+    & = -\lim_{h \to 0} \left\{
+      \frac{g(x+h)-g(x)}{h} \frac{1}{g(x+h)g(x)}
+      \right\} \\
+    & = -\frac{g'(x)}{g(x)^2} \,.
+  \end{align*}
+  }
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute:
+  \[
+    \ddx \frac{x^2+1}{x^3-3x} \,.
+  \]
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Compute:
+  \[
+    \ddx \frac{625-x^2}{\sqrt{x}}
+  \]
+  in two ways. First using the quotient rule and then using the product
+  rule.
+\end{frame}
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
