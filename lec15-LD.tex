@@ -1,0 +1,148 @@
+\documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+% \documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 15: Logarithmic Differentiation (LD)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+  Let's recall:
+
+  \begin{block}{Properties of logarithms}
+    Let $b>0$ and $b \neq 1$; let $x, y > 0$.
+    \begin{itemize}
+    \item $\log_b(xy) = \log_b(x) + \log_b(y)$
+    \item $\log_b(x/y) = \log_b(x) - \log_b(y)$
+    \item $\log_b(x^y) = y\log_b(x)$
+    \end{itemize}
+  \end{block}
+  % In words, a logarithm turns products into sums and a power into a
+  % scalar multiple.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Logarithmic differentiation}
+  A key point of the logarithmic differentiation is the following
+  application of the chain rule:
+  \[
+    \ddx \ln ( f(x) ) = \frac{f'(x)}{f(x)} \,.
+  \]
+
+  \begin{block}{Illustration of method}
+    To differentiate $y = f(x)$, i.e., to find $\frac{dy}{dx} = y'$:
+    \begin{enumerate}
+    \item Take the logarithm of $y = f(x)$: $\ln y = \ln f(x)$
+    \item Differentiate implicitly: $y'/y =  f'(x)/f(x)$
+    \item Solve for $y'$.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute
+    \[
+      \ddx \frac{x^9e^{4x}}{\sqrt{x-4}}.
+    \]
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    For  $x>0$, compute
+    \[
+      \ddx x^x \,.
+    \]
+    This function is an example of a \textit{tower
+      function}.~\footnote{
+      \textbf{Note.} Make sure you are able to distinguish the following functions:
+      \[
+        a^x\,, \qquad x^a\,, \qquad x^x \,.
+      \]
+    }
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute the derivative
+    \[
+      \ddx\ln{(|x|)} \,.
+    \]
+    Use the result to compute the derivative
+    \[
+      \ddx\ln{(|f(x)|)} \,.
+    \]
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Using logarithmic differentiation, compute the derivative.
+    \[
+      \ddx\Bigl(\dfrac{\sin{x}}{x}\Bigr) \,.
+    \]
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Power Rule Revisited}
+  \begin{thm}[The power rule]
+    For any real number $n$ and a positive real number $x$,
+    \[
+      \ddx x^n = n x^{n-1}.
+    \]
+  \end{thm}
+
+  \note{
+    \begin{proof}
+      We will use logarithmic differentiation. Set $f(x) = x^n$. Write
+      \begin{align*}
+        \ln(|f(x)|) &= \ln\left(|x|^n\right) , x\ne0\\
+                    &= n\ln(|x|).
+      \end{align*}
+      Now differentiate both sides, and solve for $f'(x)$
+      \begin{align*}
+        \frac{f'(x)}{f(x)} &= \frac{n}{x}\\
+        f'(x) &=\frac{n f(x)}{x}\\
+                           &= {n x^{n-1}}.
+      \end{align*}
+      Thus we see that the power rule holds for all real-valued exponents.
+    \end{proof}
+  }
+\end{frame}
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
