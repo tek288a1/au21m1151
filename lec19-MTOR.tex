@@ -1,0 +1,228 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 19: More Than One Rate (MTOR)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related rates problems}
+
+  \begin{itemize}
+  \item<2-> Suppose two variables $x$ and $y$ are both dependent on time
+    $t$.
+  \item<3-> Moreover, assume that these two are related to each other.
+  \item<4-> In this context, the rate of change of $y$ with respect to
+    time is expected to be {\it related\/} to that of $x$;
+  \item<5-> when one of the rates is known and the other is to be found,
+    we have a {\bf related rates} problem.
+  \end{itemize}
+
+  \vfill
+  \onslide<6->{\small
+  \begin{block}{\bf \small Key idea.}
+    \onslide<6->{If $y$ is written in terms of $x$ and we are given
+    $\ds \frac{dx}{dt} = x'(t)$, then we can find $\ds \frac{dy}{dt} = y'(t)$
+    using the chain rule:}
+
+    \onslide<7->{\[
+      \frac{dy}{dt} =y'(x(t))\cdot x'(t) \,.
+    \]}
+  \end{block}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem-solving strategies}
+
+  \begin{block}{General procedure}
+    \vspace{0.1in}
+    \begin{enumerate}
+    \item<2-> \textbf{Draw a picture.} If possible, draw a schematic
+      picture with all the relevant information.
+      \vspace{0.1in}
+    \item<3-> \textbf{Find equations.} We want equations that relate all
+      relevant functions.
+      \vspace{0.1in}
+    \item<4-> \textbf{Differentiate the equations.} Here we will often use
+      implicit differentiation.
+      \vspace{0.1in}
+    \item<5-> \textbf{Evaluate.} Evaluate each quantity at the relevant
+      moment.
+      \vspace{0.1in}
+    \item<6-> \textbf{Solve.} Solve for the relevant rate at the relevant
+      moment.
+      \vspace{0.1in}
+    \end{enumerate}
+  \end{block}
+
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{}
+  \vs
+  \begin{block}{Example 1. (Circular geometry)}<1->
+    Imagine an expanding circle. If we know that the perimeter is
+    expanding at a rate of $4$ m/s, what rate is the area changing
+    when the radius is $3$ meters?
+  \end{block}
+
+  \onslide<2->
+  \begin{figure}
+    \hfill
+    \begin{tikzpicture}[scale=0.7, every node/.style={transform shape}]
+      % \draw [penColor, very thick] (0,0) circle [radius=2];
+      % \draw [penColor] (0,0) -- (2,0);
+      % \node [below,penColor] at (1,0) {$r=3$ m};
+      % \node [penColor,left] at (-1.5,1.42) {$\dfrac{d}{dt}P(t) = 4$ m/s};
+      % \node [penColor, right] at (1.5,-1.42) {$A = \pi\cdot r^2$};
+      \draw [thick] (0,0) circle [radius=2];
+      \draw [] (0,0) -- (2,0);
+      \node [below] at (1,0) {$r=3$ m};
+      \node [left] at (-1.4,1.7) {$\dfrac{d}{dt}P(t) = 4$ m/s};
+      \node [right] at (1.5,-1.42) {$A = \pi\cdot r^2$};
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+\begin{frame}\end{frame}
+% \emptyframe
+
+\begin{frame}[t]
+  \frametitle{}
+  \vs
+  \begin{block}{Example 2. (Right triangles)}<1->
+    Imagine an expanding right triangle. If one leg has a fixed length
+    of $3$ m, one leg is increasing with a rate of $2$ m/s, and the
+    hypotenuse is expanding to accommodate the expanding leg, at what
+    rate is the hypotenuse expanding when both legs are $3$ m long?
+  \end{block}
+
+  \onslide<2->
+  \begin{figure}
+    \hfill
+    \begin{tikzpicture}[scale=0.7, every node/.style={transform shape}]
+      \coordinate (A) at (0,2);
+      \coordinate (B) at (0,5);
+      \coordinate (C) at (6.5,2);
+      \tkzMarkRightAngle(C,A,B)
+      \tkzDefMidPoint(A,B) \tkzGetPoint{a}
+      \tkzDefMidPoint(A,C) \tkzGetPoint{b}
+      \tkzDefMidPoint(B,C) \tkzGetPoint{c}
+      \draw (A)--(B)--(C)--cycle;
+      \tkzLabelPoints[above](c)
+      \tkzLabelPoints[above](b)
+      %\tkzLabelPoints[left](a)
+      \node [left] at (a) {$a = 3$};
+      \node [below] at (b) {$b'(t) = 2$};
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+\begin{frame}\end{frame}
+% \emptyframe
+
+\begin{frame}[t]
+  \frametitle{}
+  \vs
+  \begin{block}{Example 3. (Angular rates)}<1->
+    Imagine an expanding right triangle. If one leg has a fixed length
+    of $3$ m, one leg is increasing with a rate of $2$ m/s, and the
+    hypotenuse is expanding to accommodate the expanding leg, at what
+    rate is the angle opposite the fixed leg changing when both legs
+    are $3$ m long?
+  \end{block}
+
+  \onslide<2->
+  \begin{figure}
+    \hfill
+    \begin{tikzpicture}[scale=0.7, every node/.style={transform shape}]
+      \coordinate (A) at (0,2);
+      \coordinate (B) at (0,5);
+      \coordinate (C) at (6.5,2);
+      \tkzMarkRightAngle(C,A,B)
+      \tkzMarkAngle[size=1.2cm,thin](B,C,A)
+      \tkzLabelAngle[pos = 1](B,C,A){$\theta$}
+      \tkzDefMidPoint(A,B) \tkzGetPoint{a}
+      \tkzDefMidPoint(A,C) \tkzGetPoint{b}
+      \tkzDefMidPoint(B,C) \tkzGetPoint{c}
+      \draw (A)--(B)--(C)--cycle;
+      \tkzLabelPoints[above](c)
+      \tkzLabelPoints[above](b)
+      %\tkzLabelPoints[left](a)
+      \node [left] at (a) {$a = 3$};
+      \node [below] at (b) {$b'(t) = 2$};
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+\begin{frame}\end{frame}
+% \emptyframe
+
+\begin{frame}[t]
+  \frametitle{}
+  \vs
+  \begin{block}{Example 4. (Similar triangles)}<1->
+    Imagine two right triangles that share an angle. If $x$ is growing
+    from the vertex with a rate of $3$ m/s, what rate is the area of
+    the smaller triangle changing when $x = 5$ m?
+  \end{block}
+
+  \onslide<2->
+  \begin{figure}
+    \hfill
+    \begin{tikzpicture}[scale=0.7, every node/.style={transform shape}]
+      \coordinate (A) at (6,2);
+      \coordinate (B) at (6,5);
+      \coordinate (C) at (0,2);
+      \coordinate (D) at (4,2);
+      \coordinate (E) at (4,4);
+      \tkzMarkRightAngle(C,A,B)
+      \tkzMarkRightAngle(C,D,E)
+      \tkzDefMidPoint(A,B) \tkzGetPoint{a}
+      \tkzDefMidPoint(A,C) \tkzGetPoint{b}
+      \tkzDefMidPoint(D,C) \tkzGetPoint{x}
+      \draw[decoration={brace,mirror,raise=.2cm},decorate,thin] (0,2)--(6,2);
+      \draw[decoration={brace,mirror,raise=.2cm},decorate,thin] (6,2)--(6,5);
+      \draw[dashed] (A)--(B)--(C)--cycle;
+      \draw[very thick] (D)--(E)--(C)--cycle;
+      \tkzLabelPoints[above](x)
+      \node at (3,2-.7) {$6$};
+      \node at (6+.7,3.5) {$3$};
+      \node at (2,2-.9) {$x'(t) = 3$};
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+\begin{frame}\end{frame}
+% \emptyframe
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
