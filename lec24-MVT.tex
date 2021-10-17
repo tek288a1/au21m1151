@@ -1,0 +1,374 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 24: Extreme and Mean Value Theorems (MVT)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Extreme Values of a Function}
+  \begin{defn}
+    \begin{itemize}
+    \item A function $f$ has a \dfn{global maximum} at $a$ if $f(a)\ge
+      f(x)$ for every $x$ in the domain of the function.
+    \item A function $f$ has a \dfn{global minimum} at $a$ if $f(a)\le
+      f(x)$ for every $x$ in the domain of the function.
+    \end{itemize}
+    A \dfn{global extremum}\index{extremum!global} is either a
+    global maximum or a global minimum.
+  \end{defn}
+\end{frame}
+
+\begin{frame}
+  \vs{}
+  \question{} Let $f$ be the function given by the graph below.
+  \begin{image}[0.35\linewidth]
+    \begin{tikzpicture}[baseline=(current bounding box.north)]
+      \begin{axis}[
+        xmin=0, xmax=5, ymin=-1,ymax=2.2,
+        unit vector ratio*=1 1 1,
+        axis lines =middle, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        xtick={0,...,5}, ytick={-1,...,2},
+        ]
+        \addplot[ultra thick, color=penColor, smooth, domain=(0:1)] {(x-1)^2};
+        \addplot[ultra thick, color=penColor, smooth, domain=(1:2)] {2*(x-1)^2};
+        \addplot[ultra thick, color=penColor, smooth, domain=(2:5)] {4-x};
+        \addplot [color=penColor,fill=penColor,only marks,mark=*] coordinates{(0,1)};
+        \addplot [color=penColor,fill=penColor,only marks,mark=*] coordinates{(5,-1)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+  \begin{enumerate}
+  \item Find the $x$-coordinate of the point where the function $f$
+    has a global maximum and a global minimum.
+    \vfill
+  \item Find the $x$-coordinate(s) of the point(s) where the function
+    $f$ has a local minimum and a local maximum.
+    \vfill
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+  \vs{}
+
+  \begin{alertblock}{Caution}
+    A function may not attain a global extremum on its
+    domain. Consider the following graph.
+  \end{alertblock}
+  \vfill
+  \begin{image}[0.95\linewidth]
+    \begin{tikzpicture}
+      \begin{axis}[
+        xmin=-1, xmax=6, ymin=-2.5,ymax=1.5,
+        unit vector ratio*=1 1 1,
+        axis lines =middle, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        xtick={-1,...,6}, ytick={-2,...,1},
+        ]
+        \addplot[ultra thick, color=penColor, smooth, domain=(-1:1)] {-2*x^2};
+        \addplot[ultra thick, color=penColor, smooth, samples=500, domain=(1:3)] {-2*2^(-1/3)*(3-x)^(1/3)};
+        \addplot[ultra thick, color=penColor, smooth, samples=100, domain=(3:5)] {2^(-1/3)*(x-3)^(1/3)};
+        \addplot[ultra thick, color=penColor, smooth, domain=(5:6)] {x-6};
+        \addplot[ultra thick, color=penColor, smooth]plot coordinates{(3,-.1) (3,0)};
+        \addplot [color=penColor,fill=background,only marks,mark=*] coordinates{(-1,-2)};
+        \addplot [color=penColor,fill=background,only marks,mark=*] coordinates{(5,1)};
+        \addplot [color=penColor,fill=background, only marks, mark=*] coordinates{(5,-1)};
+        \addplot[color=penColor,fill=background,only marks, mark=*] coordinates{(6,0)};
+        \addplot[color=penColor,fill=background,only marks, mark=*] coordinates{(1,-2)};
+      \end{axis}
+    \end{tikzpicture}
+    \hspace{0.5in}
+    \begin{tikzpicture}
+      \begin{axis}[
+        xmin=-1, xmax=6, ymin=-2.5,ymax=1.5,
+        unit vector ratio*=1 1 1,
+        axis lines =middle, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        xtick={-1,...,6}, ytick={-2,...,1},
+        ]
+        \addplot[ultra thick, color=penColor, smooth, domain=(-1:1)] {-2*x^2};
+        \addplot[ultra thick, color=penColor, smooth, samples=500, domain=(1:3)] {-2*2^(-1/3)*(3-x)^(1/3)};
+        \addplot[ultra thick, color=penColor, smooth, samples=100, domain=(3:5)] {2^(-1/3)*(x-3)^(1/3)};
+        \addplot[ultra thick, color=penColor, smooth, domain=(5:6)] {x-6};
+        \addplot[ultra thick, color=penColor, smooth]plot coordinates{(3,-.1) (3,0)};
+        \addplot [color=penColor,fill=background,only marks,mark=*] coordinates{(-1,-2)};
+        \addplot [color=penColor,fill=penColor,only marks,mark=*] coordinates{(5,1)};
+        \addplot [color=penColor,fill=background, only marks, mark=*] coordinates{(5,-1)};
+        \addplot[color=penColor,fill=background,only marks, mark=*] coordinates{(6,0)};
+        \addplot[color=penColor,fill=background,only marks, mark=*] coordinates{(1,-2)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Extreme Value Theorem}
+  So when do we know for sure that a function attains a global extremum?
+  \begin{thm}[The Extreme Value Theorem]
+    If $f$ is continuous on the closed interval $[a,b]$, then there
+    are points $c$ and $d$ in $[a,b]$, such that $(c,f(c))$ is a
+    global maximum and $(d,f(d))$ is a global minimum on $[a, b]$.
+  \end{thm}
+
+  \vs{}
+
+  \textbf{Remark.}
+  \begin{itemize}
+  \item The theorem does not hold if we work on an open interval
+    $(a,b)$. Can you come up with an example?
+  \item The theorem does not hold if we work on a closed interval
+    $[a,b]$ but $f$ is not continuous. Can you come up with an
+    example?
+  \item Do the previous examples invalidate the EVT?
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Remarks}
+  In finding global extrema:
+  \begin{itemize}
+  \item The EVT guarantees the existence of global extrema when we work with a function $f$ that is continuous on a closed interval.
+  \item The global extrema may occur either at the end points of the interval or in the interior.
+  \item If a global extremum occurs at an interior points, then it is also a local extremum thus a critical point.
+  \item Hence, all \textbf{interior critical points} as well as the \textbf{end points} are candidates for global extrema.
+  \item In sum, in order to locate global extrema, we evaluate the
+    function at these candidate points and compare them to determine
+    global maxima and global minima.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs{}
+
+  \question{} Let $f(x)=x^2e^{-x}$, for $ -2\le x\le1$. Locate the global
+  extrema of $f$ on the closed interval $[-2,1]$.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Rolle's Theorem}
+
+  \begin{itemize}
+  \item We now explore an intricate relation between \textbf{average
+      rate} and \textbf{instantaneous rate of change}.
+  \item In some context, this can be translated as relation between
+    \textit{average velocity} and \textit{instantaneous velocity} or
+    \textit{slope of secant line} vs. \textit{slope of tangent line}.
+  \end{itemize}
+
+  \begin{thm}[Rolle's Theorem]
+    Suppose that $f$ is differentiable on the interval $(a,b)$, is
+    continuous on the interval $[a,b]$, and $f(a)=f(b)$. Then
+    \[
+      f'(c)=0
+    \]
+    for some $a<c<b$.
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Illustration of Rolle's Theorem}
+  \begin{image}
+    \begin{tikzpicture}
+      \begin{axis}[
+        xmin=0, xmax=4.5,ymin=1,ymax=5,
+        axis lines =left, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        xtick={1,2,3}, xticklabels={$a$,$c$,$b$},
+        ytickmin=1, ytickmax=0,
+        axis on top,
+        ]
+        \addplot [draw=none, fill=fill1,domain=(1:3)] {5} \closedcycle;
+        \addplot [very thick,penColor, smooth] {-(x-2)^2+4};
+        \addplot [very thick,penColor2, smooth] {4};
+        \node at (axis cs:.4,2.5) [penColor] {$f$};
+        \addplot [textColor,dashed] plot coordinates {(2,0) (2,4)};
+        \addplot [textColor,dashed] plot coordinates {(1,3) (3,3)};
+        \addplot[color=penColor3,fill=penColor3,only marks,mark=*] coordinates{(2,4)};
+        \addplot[color=penColor,fill=penColor,only marks,mark=*] coordinates{(1,3)};
+        \addplot[color=penColor,fill=penColor,only marks,mark=*] coordinates{(3,3)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+\begin{frame}
+  \frametitle{The Mean Value Theorem}
+  A generalization of Rolle's theorem is coined as the mean value
+  theorem.
+  \begin{thm}[The Mean Value Theorem]
+    Suppose that $f$ has a derivative on the interval $(a,b)$ and is
+    continuous on the interval $[a,b]$. Then
+    \[
+      f'(c)=\frac{f(b)-f(a)}{b-a}
+    \]
+    for some $a<c<b$.
+  \end{thm}
+
+  \vs{}
+
+  \begin{itemize}
+  \item The mean value theorem says that when a function is continuous
+    on a closed interval and differentiable in its interior, then its
+    average rate of change must be achieved at some point as an
+    instantaneous rate of change.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Illustration of the Mean Value Theorem}
+  \begin{image}
+    \begin{tikzpicture}
+      \begin{axis}[
+        xmin=.5, xmax=5.5,ymin=0,ymax=3.1,
+        axis lines =center, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        xtick={1,2.04,5}, xticklabels={$a$,$c$,$b$},
+        ytickmin=1, ytickmax=0,
+        axis on top,
+        ]
+        \addplot [draw=none, fill=fill1,domain=(1:5)] {3.1} \closedcycle;
+        \addplot [penColor2!40!background,very thick,dashed] plot coordinates {(1,.84+1.5) (5,1.5-.96)};
+        \addplot [textColor,dashed] plot coordinates {(2.04,0) (2.04,1.5+.89)};
+        \addplot [very thick,penColor, smooth,domain=(1:5)] {sin(deg(x))+1.5};
+        \addplot [very thick,penColor2,domain=(.5:5.5)] {-.45*(x-2.04)+.89+1.5};
+        % \node at (axis cs:.4,2.5) [penColor] {$f(x)$};
+        \addplot[color=penColor,fill=penColor,only marks,mark=*] coordinates{(1,.84+1.5)};  %% closed hole
+        \addplot[color=penColor,fill=penColor,only marks,mark=*] coordinates{(5,-.96+1.5)};  %% closed hole
+        \addplot[color=penColor3,fill=penColor3,only marks,mark=*] coordinates{(2.04,.89+1.5)};  %% closed hole
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+\begin{frame}
+  \vs{}
+  There are many interesting questions that can be answered using the
+  mean value theorem.
+  \begin{example}
+    Suppose you toss a ball into the air and then catch it. Must the
+    ball's vertical velocity have been zero at some point?
+  \end{example}
+
+  \note{
+    \textbf{Answer.} Let $s(t)$ be the vertical location of the ball at
+    time $t$. Suppose the ball was tossed at $t = 0$ and caught at
+    $t = t_f$. It is plausible to assume that $s$ is continuous on
+    $[0, t_f]$ and differentiable on $(0, t_f)$. Moreover,
+    $s(0) = s(t_f) = 0$ and so
+    \[
+      \frac{s(t_f) - s(0)}{t_f - 0} = 0 \,.
+    \]
+    So by Rolle's theorem, there must be a time $c$ in $(0, t_f)$ at
+    which $s'(c) = v(c) = 0$.
+  }
+\end{frame}
+
+
+\begin{frame}
+  \vs{}
+
+  \begin{example}
+    Suppose you drive a car from toll booth on a toll road to another
+    toll booth $30$ miles away in half of an hour. Was there a moment
+    that you violated the speed limit of 55 mph?
+  \end{example}
+
+  \note{
+    \textbf{Answer.} Let $s(t)$ be the distance droven from the first
+    toll booth at time $t$ with $t = 0$ corresponding to the time you
+    left the first booth. It is reasonable to assume that $s$ is
+    continuous on $[0, 1/2]$ and differentiable on $(0, 1/2)$. So the
+    mean value theorem is applicable and it tells us that there is a
+    time $c$ in $(0, 1/2)$ such that
+    \[
+      s'(c) = \frac{s(1/2) - s(0)}{1/2} = 60 \,,
+    \]
+    meaning that you drove at instantaneous velocity of 60 mph, 5 mph over
+    the speed limit, at that particular moment.
+  }
+\end{frame}
+
+
+\begin{frame}
+  \vs{}
+  \begin{example}
+    Suppose the derivative of a function is 0 on an open interval
+    $I$. What can we say about $f$?
+  \end{example}
+
+  \note{
+    \textbf{Answer.} Let $a<b$ be two distinct points in $I$. Since $f$ is
+    continuous on $[a,b]$ and differentiable on $(a,b)$, by the mean value
+    theorem, we know that
+    \[
+      \frac{f(b)-f(a)}{b-a} = f'(c) \,,
+    \]
+    for some $c$ in $(a,b)$. But since $f' = 0$ on $I$, it must be the
+    case that $f(a) = f(b)$. Since $a$ and $b$ were arbitrary, it must be
+    the case that $f$ is a constant function.
+  }
+
+\end{frame}
+
+
+\begin{frame}
+  \vs{}
+  \begin{example}
+    Suppose two different functions have the same derivative. What can
+    you say about the relationship between the two functions?
+  \end{example}
+
+  \note{
+    \textbf{Answer.} Let $f$ and $g$ be two functions with the same
+    derivative on $(a,b)$. If we define $h(x) = f(x)-g(x)$, then
+    $h' = 0$ on the interval $(a,b)$. By the previous example,
+    $h(x) = C$ for some constant $C$. This implies that $f$ and $g$
+    differ by a constant.
+  }
+
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
