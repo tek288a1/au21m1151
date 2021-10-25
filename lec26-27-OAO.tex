@@ -1,0 +1,249 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 26-27: Optimization (O \& AO)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Basic Idea and Terminology}
+  An \dfn{optimization problem} is a problem where you need to maximize
+  or minimize some quantity under some constraints. This can be
+  accomplished using the tools of differential calculus that we have
+  already developed.
+
+  \vs
+
+  \textbf{Terminology.}
+  \begin{itemize}
+  \item \textbf{constraints:} conditions imposed on variables
+  \item \textbf{objective functions:} the quantities desired to be optimized
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A Solitary Local Extremum}
+  \begin{itemize}
+  \item The extreme value theorem guarantees the existence of global
+    extrema only on a closed interval.
+  \item On intervals that are not closed, the theorem is not
+    applicable. Yet, when there is only one local extreme value, we
+    can say something about global extrema.
+  \end{itemize}
+
+  \begin{thm}
+    Suppose $f$ is continuous on an interval $I$ that contains exactly
+    one local extremum at $c$.
+    \begin{itemize}
+    \item If a local maximum occurs at $c$, \\
+      then $f(c)$ is the global maximum of $f$ on $I$.
+    \item If a local minimum occurs at $c$, \\
+      then $f(c)$ is the global minimum of $f$ on $I$.
+    \end{itemize}
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}[Maximum area rectangles]
+    Of all rectangles of perimeter 12, which side lengths give the
+    greatest area?
+  \end{example}
+\end{frame}
+
+
+\begin{frame}
+  \vs
+  \begin{example}[Minimum perimeter rectangles]
+    Of all rectangles of area 100, which has the smallest perimeter?
+  \end{example}
+\end{frame}
+
+
+\begin{frame}
+  \vs
+  \begin{example}[Rectangles beneath a semicircle]
+    A rectangle is constructed with its base on the diameter of a
+    semicircle with radius 5 and its two other vertices on the
+    semicircle. What are the dimensions of the rectangle with maximum
+    area?
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}[Minimum distance]
+    Find the point $P$ on the curve $y = x^2$ that is closest to the
+    point $(18,0)$. What is the least distance between $P$ and $(18,0)$?
+  \end{example}
+\end{frame}
+
+% \begin{frame}
+%   \vs
+%   \begin{example}[Airline regulations]
+%     Suppose an airline policy states that all baggage must be box-shaped
+%     with a sum of length, width, and height not exceeding 64 in. What
+%     are the dimensions and volume of a square-based box with the
+%     greatest volume under these conditions?
+%   \end{example}
+% \end{frame}
+
+
+% \begingroup
+% \small
+% \begin{frame}
+%   \vs
+%   The following examples are more involved and require careful thinking.
+%   \begin{example}
+%     You are making cylindrical containers to contain a given volume.
+%     Suppose that the top and bottom are made of a material that is $N$
+%     times as expensive (cost per unit area) as the material used for the
+%     lateral side of the cylinder.  Find (in terms of $N$) the ratio of
+%     height to base radius of the cylinder that minimizes the cost of
+%     making the containers.
+%   \end{example}
+% \end{frame}
+
+% \begin{frame}
+%   \vs
+%   \begin{example}
+%     You want to sell a certain number $n$ of items in order to maximize
+%     your profit.  Market research tells you that if you set the price at
+%     \$$1.50$, you will be able to sell $5000$ items, and for every
+%     $10$ cents you lower the price below \$$1.50$ you will be able to
+%     sell another $1000$ items.  Suppose that your fixed costs
+%     (``start-up costs'') total
+%     \$$2000$, and the per item cost of production (``marginal cost'') is
+%     \$$0.50$.  Find the price to set per item and the number of items
+%     sold in order to maximize profit, and also determine the maximum
+%     profit you can get.
+%   \end{example}
+% \end{frame}
+
+
+\begin{frame}
+  \vs
+  \begin{example}
+    If you fit the largest possible cone inside a sphere, what fraction of the
+    volume of the sphere is occupied by the cone?  (Here by ``cone'' we mean a
+    right circular cone, i.e., a cone for which the base is perpendicular to
+    the axis of symmetry, and for which the cross-section cut perpendicular to
+    the axis of symmetry at any point is a circle.)
+  \end{example}
+  \vs
+  \hfill
+  \begin{minipage}{0.4\linewidth}
+    \begin{image}[0.9\linewidth]
+      \begin{tikzpicture}
+        \draw[very thick,penColor2!20!background] (2,0) arc (0:180:2 and .7);% top half of ellipse
+        \draw [penColor, very thick] (0,1) ellipse (1.7 and .5);
+        \draw[penColor, very thick] (1.7,.95) -- (0,-2);
+        \draw[penColor, very thick] (-1.7,.95) -- (0,-2);
+        \draw[very thick,penColor2] (-2,0) arc (180:360:2 and .7);% bottom half of ellipse
+
+
+        \draw [penColor2, very thick] (0,0) circle [radius=2];
+
+        \draw[penColor2, dashed, very thick] (0,0) -- (2,0);
+        \draw[penColor, dashed, very thick] (0,1) -- (1.7,1);
+        \draw[penColor, dashed, very thick] (0,1) -- (0,-2);
+
+        \node [below,penColor2] at (1.5,0) {$R$};
+        \node [above,penColor] at (.85,1) {$r$};
+        \node [left,penColor] at (0,-.33) {$h$};
+
+        \node [penColor,left] at (-1.5,1.42) {$V_{\text{c}} = \frac{\pi r^2h}{3}$};
+        \node [penColor2, right] at (1.5,-1.42) {$V_{s} = \frac{4\pi R^3}{3}$};
+      \end{tikzpicture}
+    \end{image}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begingroup
+  \footnotesize
+  \begin{example}
+    Suppose you want to reach a point $A$ that is located across the
+    sand from a nearby road. Suppose that the road is straight, and $b$
+    is the distance from $A$ to the closest point $C$ on the road.  Let
+    $v$ be your speed on the road, and let $w$, which is less than $v$,
+    be your speed on the sand.  Right now you are at the point $D$,
+    which is a distance $a$ from $C$.  At what point $B$ should you turn
+    off the road and head across the sand in order to minimize your
+    travel time to $A$?
+  \end{example}
+  \endgroup
+  \vs
+  \hfill
+  \begin{minipage}{0.4\linewidth}
+    \begin{image}[0.9\linewidth]
+      \begin{tikzpicture}
+        \draw[fill2, fill=fill1!60!background] (0,-.2) rectangle (6,3.5);
+        \draw[fill1, fill=fill2] (0,.4) rectangle (6,1);
+
+        % \node[penColor] at (.5,.75) {\scalebox{-2}[2] \Bicycle};
+
+        \draw [penColor, fill] (1,.75) circle [radius=.07];
+        \draw [penColor, fill] (2.5,.75) circle [radius=.07];
+        \draw [penColor, fill] (5,.75) circle [radius=.07];
+        \draw [penColor, fill] (5,3) circle [radius=.07];
+
+        \draw[penColor2, very thick, ->] (1.2,.75) -- (2.3,.75);
+        \draw[penColor2, very thick, ->] (2.6,.85) -- (4.9,2.9);
+
+        \draw[penColor, very thick, dashed] (5,.75) -- (5,3);
+        \draw[penColor, very thick, dashed] (5,.75) -- (2.5,.75);
+        % \draw[penColor, very thick, dashed] (1,.4) -- (5,.4);
+        \draw[decoration={brace,mirror,raise=.2cm},decorate,thin] (1,.5)--(5,.5);
+
+        \node [right,penColor] at (5,3) {$A$};
+        \node [below,penColor] at (1,.75) {$D$};
+        \node [below,penColor] at (2.5,.75) {$B$};
+        \node [below,penColor] at (5,.75) {$C$};
+        \node [right,penColor] at (5,2) {$b$};
+        \node [above,penColor] at (4,.75) {$x$};
+        \node [left,penColor2] at (3.8,2) {$w$};
+        \node [above,penColor2] at (1.75,.75) {$v$};
+        \node [below,penColor] at (3,.2) {$a$};
+      \end{tikzpicture}
+    \end{image}
+  \end{minipage}
+\end{frame}
+%\endgroup
+
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
