@@ -1,0 +1,256 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 30: Antiderivatives (A)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Basic Antiderivatives}
+
+  \textbf{Antidifferentiation} is a process where we undo differentiation. Precisely:
+  \begin{defn}
+    A function $F$ is called an \dfn{antiderivative} of $f$ on an
+    interval if
+    \[
+      F'(x) = f(x)
+    \]
+    for all $x$ in the interval.
+  \end{defn}
+
+\end{frame}
+
+\begin{frame}
+  \vs
+  Since the derivative of a constant is zero, we can add it to any
+  antiderivative of $f$ and it will still be an antiderivative.
+
+
+  \begin{thm}[The family of antiderivatives]
+    If $F$ is an antiderivative of $f$, then the function $f$ has a
+    whole \textbf{family of antiderivatives}. Each antiderivative of $f$
+    is the sum of $F$ and some constant $C$. The family of \textit{all}
+    antiderivatives of $f$ is denoted by
+    \[
+      \int f(x) \; dx \,.
+    \]
+    This is called the \textbf{indefinite integral} of $f$.
+  \end{thm}
+
+  It follows that
+  \[
+    \int f(x) \d x =F(x)+C,
+  \]
+  where $F$ is any antiderivative of $f$ and $C$ is an arbitrary constant.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Basic Indefinite Integrals}
+  \begin{itemize}
+  \item $\int k \d x= k x+C$
+  \item $\int \frac{1}{x} \d x= \ln|x|+C$
+  \item $\int x^n \d x= \frac{x^{n+1}}{n+1}+C\qquad(n\ne-1)$
+  \item $\int e^x \d x= e^x + C$
+  \item $\int a^x \d x= \frac{a^x}{\ln(a)}+C$
+  \item $\int \cos(x) \d x = \sin(x) + C$
+  \item $\int \sin(x) \d x = -\cos(x) + C$
+  \item $\int \sec^2(x) \d x = \tan(x) + C$
+  \item $\int \csc^2(x) \d x = -\cot(x) + C$
+  \item $\int \sec(x)\tan(x) \d x = \sec(x) + C$
+  \item $\int \csc(x)\cot(x) \d x = -\csc(x) + C$
+  \item $\int \frac{1}{x^2+1}\d x = \arctan{x} + C$
+  \item $\int \frac{1}{\sqrt{1-x^2}}\d x= \arcsin{x}+C$
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Basic Antiderivative Rules}
+  We have the following rules that mirror basic derivative rules.
+  \begin{thm}
+    If $F$ is an antiderivative of $f$ and $G$ is an antiderivative of
+    $g$, then $F+G$ is an antiderivative of $f+g$. Moreover, for any
+    constant $k$, $kF$ is an antiderivative of $kf$.
+
+    We can write equivalently, using indefinite integrals,
+    \begin{gather}
+      \int \left(f(x)+g(x)\right) \d x
+      = \int f(x)\d x +\int g(x) \d x \,, \tag{sum rule}\\
+      \int kf(x) \d x= k\int f(x)\d x \,. \tag{constant multiple rule}
+    \end{gather}
+  \end{thm}
+
+\end{frame}
+
+\begin{frame}
+  \vs
+
+  \begin{question}
+    Compute:
+    \[
+      \int \left(x^4 + 5x^2 - \cos(x)\right) \d x
+    \]
+  \end{question}
+
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    A student claims that $\int 2x \cos(x) \d x = x^2 \sin(x) +C$.  Determine whether the student is correct or incorrect.
+  \end{question}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Guessing Antiderivatives}
+  \begin{question}
+    Compute:
+    \[
+      \int \frac{\sqrt{x}+1+x}{x} \d x
+    \]
+  \end{question}
+
+\end{frame}
+
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute:
+    \[
+      \int 3x^2\sin{(x^3 -6)} \d x
+    \]
+  \end{question}
+
+
+\end{frame}
+
+
+\begin{frame}
+  \vs
+
+  \begin{question}
+    Compute:
+    \[
+      \int \frac{2x^2}{7x^3 + 3} \d x
+    \]
+  \end{question}
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Differential Equations}
+  \begin{itemize}
+  \item A \textit{differential equation}\index{differential equation} is
+    simply an equation with a derivative in it. Here is an example:
+    \[
+      a f'(x)+ b f(x) = g(x).
+    \]
+  \item Differential equations show you relationships between rates of
+    functions.
+  \item The theory of differential equation is a very important
+    branch of mathematics with vast real-life applications.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{What Does It Mean To Solve A Differential Equation?}
+  When a mathematician solves a differential equation, they are finding
+  \textit{functions} satisfying the equation. For example, consider the
+  following differential equation:
+  \[
+    f'(x) = f(x) \,.
+  \]
+
+  \begin{itemize}
+  \item It turns out that the complete solution to this differential equation
+    is $Ce^x$, i.e., all the solutions of this differential equation have
+    this form.
+  \item Showing that any function $y=Ce^x$ is a solution of this differential
+    equation is easy,
+  \item but showing that \textbf{all} of the solutions have
+    this form is beyond the scope of this course.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{General Solution and Initial Value Problems}
+  \begin{itemize}
+  \item In the previous example, a function $Ce^x$ is called a \dfn{general
+      solution} of the differential equation.
+  \item Since there are infinitely many solutions to a differential equation,
+    we can impose additional condition, called an \dfn{initial condition},
+    e.g. $f(0)=1$.
+  \end{itemize}
+  The problem now is to find a function $f$ that satisfies both the
+  differential equation (DE) and the initial condition (IC).
+
+  \[
+    f'(x) = f(x) \tag{DE}
+  \]
+  \[
+    f(0) =1   \tag{IC}
+  \]
+  This is called an \dfn{initial value problem} (IVP).
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example: IVP and A Falling Object}
+  Here is a classical example of IVP arising in simple physics. \\
+
+  \vs
+  \begin{question}
+    A ball is tossed into the air with an initial velocity of $15$
+    m/s. What is the velocity of the ball after 1 second? How about
+    after 2 seconds?
+  \end{question}
+
+  \vfill
+  \begin{question}
+    A ball is tossed into the air with an initial velocity of $15$ m/s
+    from a height of 2 meters. When does the ball hit the ground?
+  \end{question}
+  \vfill
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

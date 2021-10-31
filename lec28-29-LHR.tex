@@ -1,0 +1,151 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 28-29: L'H\^{o}pital's Rule (LHR)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Basic Ideas}
+  This is our final application of derivatives: using derivatives to
+  calculate difficult limits. Enter L'H\^{o}pital's rule.
+
+  \begin{thm}[L'H\^{o}pital's Rule]
+    Let $f(x)$ and $g(x)$ be functions that are differentiable near $a$.  If
+    \[
+      \lim_{x \to a} f(x) = \lim_{x \to a}g(x) = 0 \qquad \text{or } \pm \infty,
+    \]
+    and $\lim_{x \to a} \frac{f'(x)}{g'(x)}$ exists, and $g'(x) \neq 0$
+    for all $x$ near $a$, then
+    \[
+      \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}.
+    \]
+  \end{thm}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{List of Indeterminate Forms}
+  \begin{itemize}
+  \item $\boldsymbol{\frac{0}{0}}$
+  \item $\boldsymbol{\frac{\infty}{\infty}}$
+  \item $\boldsymbol{0 \cdot \infty}$
+  \item $\boldsymbol{\infty - \infty}$
+  \item $\boldsymbol{1^\infty}$
+  \item $\boldsymbol{0^0}$
+  \item $\boldsymbol{\infty^0}$
+  \end{itemize}
+
+  In each of these cases, the value of the limit is \textbf{not} immediately
+  obvious. Hence, a careful analysis is required!
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Examples: Basic Indeterminate Forms}
+  \begin{question}
+    Compute $\ds \lim_{x\to 0} \frac{\sin(x)}{x}$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute $\ds \lim_{x\to \pi/2^+} \frac{\sec(x)}{\tan(x)}$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs The following $\boldsymbol{0 \cdot \infty}$ can be reduced to one of the
+  two previous ones. For instance: \\
+  \begin{question}
+    Compute $\ds \lim_{x\to 0^+} x\ln x$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Examples: Indeterminate Forms Involving Subtraction}
+
+  The name of the game once again is reduction. We will transform
+  differences into either quotients or products then apply
+  L'H\^{o}pital's rule on the basic forms. \\
+
+  \begin{question}
+    Compute $\ds \lim_{x\to 0} \left(\cot(x) - \csc(x)\right)$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute $\ds \lim_{x\to\infty}\left(\sqrt{x^2+x}-x\right)$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Examples: Exponential Indeterminate Form}
+  This pertains to the forms
+  \[
+    \boldsymbol{1^\infty}, \quad \boldsymbol{0^0}, \quad \boldsymbol{\infty^0}
+  \]
+  Suppose we have functions $u(x)$ and $v(x)$ such that
+  \[
+    \lim_{x \to a} u(x)^{v(x)}
+  \]
+  falls into one of the forms described above. We use the inverse relation between $\exp$ and $\log$ functions to rewrite the limit as
+  \[
+    \lim_{x\to a}e^{v(x) \ln(u(x))} \,.
+  \]
+  Using the fact that the exponential function is continuous, the limit equals to
+  \[
+    \exp[ \lim_{x\to a} v(x) \ln (u(x)) ] \,.
+  \]
+  Note that the limit now is in one of the previously presented forms.
+\end{frame}
+
+\begin{frame}
+  \vs
+
+  \begin{question}
+    First determine the form of the limit, then compute the limit.
+    \[
+      \lim_{x\to \infty}\left(1 + \frac{1}{x}\right)^x.
+    \]
+  \end{question}
+\end{frame}
+
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
