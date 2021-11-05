@@ -1,0 +1,264 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 37: Second Fundamental Theorem \\ of Calculus (SFTOC)}
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The Second Fundamental Theorem of Calculus}
+  Here comes the second form of the Fundamental Theorem of
+  \begin{thm}[Second Fundamental Theorem of Calculus, FTC2]
+    Let $f$ be continuous on $[a,b]$. If $F$ is \textbf{any}
+    antiderivative of $f$, then
+    \[
+      \int_a^b f(x)\d x = F(b)-F(a)\,. \tag{FTC2}
+    \]
+  \end{thm}
+
+  \begin{itemize}
+  \item An alternate interpretation of (FTC2) is to write it as
+    \begin{image}[0.5\linewidth]
+      \begin{tikzpicture}[scale=2,every node/.style={transform shape}]
+        \node at (0,0) {
+          $\ds \color{green!70!black!70!blue}\int_a^b\color{blue!70!green} \ddx f(x)\color{green!70!black!70!blue}\d x\color{black} =
+          \color{purple!50!blue!90!black}f(b) - f(a).$
+        };
+      \end{tikzpicture}
+    \end{image}
+  \item The above reads as
+    \vspace{0.5em}
+    \begin{center}
+      \begin{minipage}{0.95\linewidth}
+        \begin{quote}
+          \textbf{The \textcolor{green!70!black!70!blue}{accumulation}
+            of a \textcolor{blue!70!green}{rate} is given by the
+            \textcolor{purple!50!blue!90!black}{change in the amount}.}
+        \end{quote}
+      \end{minipage}
+    \end{center}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Notation}
+  \begin{itemize}
+  \item FTC2 is useful in computing a definite integral:
+    \begin{enumerate}
+    \item find an antiderivative of the integrand;
+    \item evaluate it at the limits of integration;
+    \item take the difference.
+    \end{enumerate}
+  \item In the differencing process, you may find the following notation convenient:
+    \[
+      \eval{F(x)}_a^b = F(x) \bigg|_a^b = F(b) - F(a) \,.
+    \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \red{\textit{Proof.}}
+  Let $a\le c\le b$ and write
+  \begin{align*}
+    \int_a^b f(x) \d x &= \int_a^c f(x) \d x + \int_c^b f(x) \d x \\
+                       &= \int_c^b f(x) \d x - \int_c^a f(x) \d x.
+  \end{align*}
+  By the First Fundamental Theorem of Calculus, we have
+  \[
+    F(b) = \int_c^b f(x) \d x\qquad\text{and}\qquad F(a) = \int_c^a f(x) \d x
+  \]
+  for some antiderivative $F$ of $f$. So
+  \[
+    \int_a^b f(x) \d x = F(b)-F(a)
+  \]
+  for this antiderivative. However, \textbf{any} antiderivative
+  could have be chosen, as antiderivatives of a given function
+  differ only by a constant, and this constant \textit{always}
+  cancels out of the expression when evaluating $F(b)-F(a)$.
+  \qed{}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute:
+    \begin{enumerate}
+    \item $\ds \int_{-2}^2 x^3\d x$
+      \vfill
+    \item $\ds \int_0^1 \frac{\pi}{3} \sin \frac{\pi}{3}\theta \d
+      \theta$
+      \vfill
+    \end{enumerate}
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute:
+    \begin{enumerate}
+    \item $\ds \int_0^5 e^t\d t$
+      \vfill
+    \item $\ds \int_1^2\left(x^9 + \frac{1}{x}\right) \d x$
+      \vfill
+    \end{enumerate}
+  \end{question}
+\end{frame}
+
+
+\subsection{Net Change and Future Value}
+\begin{frame}
+  \frametitle{Displacement and net change}
+  Let's recall that
+  \begin{itemize}
+  \item The derivative of a position function $s$ is a velocity function $v$.
+  \item The derivative of a velocity function $v$ is an acceleration function $a$.
+  \end{itemize}
+
+  In other words,
+  \begin{itemize}
+  \item A velocity function $v$ is an antiderivative of an acceleration function $a$.
+  \item A position function $s$ is an antiderivative of a velocity function $v$.
+  \end{itemize}
+
+  In particular, by FTC2,
+  \[
+    \int_a^b v(t) \d t = s(b) - s(a) \,,
+  \]
+  which measures a \textbf{change in position}, or \textbf{displacement} as already introduced on Monday.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Net change and future value}
+  \begin{itemize}
+  \item In general, FTC2 states that the definite integral of a rate
+    of change of a certain quantity $Q$ is the \textbf{net change} in
+    its amount between two limits of integration:
+    \[
+      \int_a^b Q'(s) \d s = Q(b) - Q(a) \,. \tag{Net change}
+    \]
+  \item If we replace $a = 0$ and $b = t$, we have a formula for \textbf{future value}:
+    \[
+      Q(t) = Q(0) + \int_0^t Q'(s) \d s \,. \tag{Future value}
+    \]
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \vs
+  \question{}
+  A book publisher estimates that the marginal cost of a particular
+  title (in dollars/book) is given by
+  \[
+    C'(x) = 12 - 0.0002x \,,
+  \]
+  where $0 \le x \le 50,000$ is the number of books printed. What is the
+  cost of producing the 12,001st through 15,000th book?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Summary of three different integrals}
+  \begingroup
+  \small
+  \begin{enumerate}
+  \item An \textbf{indefinite integral}, a.k.a. an antiderivative computes a
+    family of functions:
+    \note{
+      \[
+        \int f(x) \d x = \text{``a class of functions whose derivative is $f$''}
+      \]
+    }
+    \begin{center}
+      \begin{tcolorbox}[width=0.5\linewidth]
+        \vspace{-1em}
+        \begin{image}[0.95\linewidth]
+          \begin{tikzpicture}[scale=2,every node/.style={transform shape}]
+            \node at (0,0) {
+              $\ds \int f(x) \d x = F(x) + C$
+            };
+          \end{tikzpicture}
+        \end{image}
+        \vspace{-1em}
+      \end{tcolorbox}
+    \end{center}
+    where $F'(x) = f(x)$.
+  \item An \textbf{accumulation function} computes an accumulated area:
+    \note{
+      \[
+        \int_a^x f(t) \d t = \text{``a function $F$ whose derivative is $f$''}
+      \]
+    }
+    \begin{center}
+      \begin{tcolorbox}[width=0.5\linewidth]
+        \vspace{-1em}
+        \begin{image}[0.95\linewidth]
+          \begin{tikzpicture}[scale=2,every node/.style={transform shape}]
+            \node at (0,0) {
+              $\ds F(x)=\int_a^x f(t) \d t$
+            };
+          \end{tikzpicture}
+        \end{image}
+        \vspace{-1em}
+      \end{tcolorbox}
+    \end{center}
+    FTC1 says that $F'(x) = f(x)$.
+  \item A \textbf{definite integral} computes a signed area:
+    \note{
+      \[
+        \int_a^b f(x) \d x = \text{``the signed area between the $x$-axis and $f$''}
+      \]
+    }
+    \begin{center}
+      \begin{tcolorbox}[width=0.5\linewidth]
+        \vspace{-1em}
+        \begin{image}[0.99\linewidth]
+          \begin{tikzpicture}[scale=2,every node/.style={transform shape}]
+            \node at (0,0) {
+              $\ds \int_a^b f(x) \d x = F(b)-F(a)$
+            };
+          \end{tikzpicture}
+        \end{image}
+        \vspace{-1em}
+      \end{tcolorbox}
+    \end{center}
+  \end{enumerate}
+  \endgroup
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

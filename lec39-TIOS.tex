@@ -1,0 +1,178 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 39: The Idea of Substitution (TIOS)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Two Sides of a Coin}
+  \begingroup
+  \small
+
+  Recall that from the chain rule that
+  \[
+    \ddx f(g(x)) = f'(g(x)) g'(x).
+  \]
+
+  So by the fundamental theorem of calculus, we have
+  \begin{equation*}
+    \int_a^b f'(g(x))g'(x) \d x
+    = \eval{f(g(x))}_a^b
+    = f(g(b)) - f(g(a)).
+  \end{equation*}
+
+  Using the fundamental theorem in reverse direction once again, the
+  last line can be thought of as
+  \[
+    \eval{f(u)}_{g(a)}^{g(b)} = \int_{g(a)}^{g(b)}f'(u) \d u.
+  \]
+
+  This is the gist of the integration technique known as
+  \textbf{substitution rule} or
+  \textbf{$u$-substitution}\footnote{{\footnotesize This name is due to a popular and customary
+    choice of substitution variable $u$. The choice, however, is not
+    an absolute rule written on a stone. Any variable of your choice
+    such as $v$ or $\smiley$ works if used consistently.}}.
+  \endgroup
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Substitution Rule}
+  \begin{thm}[Integral Substitution Formula]
+    If $g$ is differentiable on the interval $[a,b]$ and $f$ is
+    differentiable on the interval $[g(a),g(b)]$, then
+    \[
+      \int_a^b f'(g(x)) g'(x) \d x =\int_{g(a)}^{g(b)} f'(u) \d u.
+    \]
+  \end{thm}
+  In sum, the substitution rule is the integral counterpart of
+  differential chain rule and the fundamental theorem of calculus
+  serves as a bridge between the two.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Procedures}
+  In integrating a function which we suspect to be the derivative of
+  another obtained by the chain rule:
+  \begin{enumerate}
+  \item Look for a candidate for the inner function; call it $u$.
+  \item Rewrite the given function completely in terms of $u$ leaving
+    no trace of the original variable.
+  \item Integrate this new function of $u$. (If necessary, you may
+    need to go back to Step 1 and modify your choice of $u$.)
+  \item In dealing with an indefinite integral, make sure to replace
+    $u$ by the equivalent expression of the original variable.
+  \item Working with a definite integral, you may evaluate the result
+    of Step 3 at the transformed bounds of $u$ or evaluate the
+    antiderivate obtained in Step 4 at the original bounds.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute $\ds \int_1^3 x \cos(x^2) \d x$.
+  \end{question}
+  % \vs
+  % \begin{example}
+  %   Compute the following integrals.
+  %   \begin{enumerate}
+  %   \item $\ds \int_1^3 x \cos(x^2) \d x$ \vfill
+  %   \item $\ds \int \sec^2(x) \tan(x) \d x$ \vfill
+  %   \end{enumerate}
+  % \end{example}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute $\ds \int \sec^2(x) \tan(x) \d x$.
+  \end{question}
+\end{frame}
+
+% \begin{frame}
+%   \vs
+%   \begin{example}
+%     Compute the following integrals.
+%     \begin{enumerate}
+%     \item $\ds \int x^4(x^5+1)^9 \d x$ \vfill
+%     \item $\ds \int_{\pi/3}^{\pi/2} \sin(x) \sec^2(\cos(x)) \d x$ \vfill
+%     \end{enumerate}
+%   \end{example}
+% \end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute $\ds \int x^4(x^5+1)^9 \d x$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute $\ds \int_{\pi/3}^{\pi/2} \sin(x) \sec^2(\cos(x)) \d x$.
+  \end{question}
+\end{frame}
+
+% \begin{frame}
+%   \vs
+%   \begin{example}
+%     Compute the following integrals.
+%     \begin{enumerate}
+%     \item $\ds \int_{-2}^1 t^2 \sin(t^3) \d t$ \vfill
+%     \item $\ds \int_0^{1/2} \frac{13e^x}{3e^x-5} \d x$ \vfill
+%     \end{enumerate}
+%   \end{example}
+% \end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute $\ds \int_{-2}^1 t^2 \sin(t^3) \d t$.
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Compute $\ds \int_0^{1/2} \frac{13e^x}{3e^x-5} \d x$.
+  \end{question}
+\end{frame}
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

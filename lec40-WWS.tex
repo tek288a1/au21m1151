@@ -1,0 +1,214 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 40: Working with Substitution (WWS)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Substitution Procedures}
+  Let's recall that in integrating a function which we suspect to be the
+  derivative of another obtained by the chain rule:
+  \begin{enumerate}
+  \item Look for a candidate for the inner function; call it $u$.
+  \item Rewrite the given function completely in terms of $u$ leaving
+    no trace of the original variable.
+  \item Integrate this new function of $u$. (If necessary, you may
+    need to go back to Step 1 and modify your choice of $u$.)
+  \item In dealing with an indefinite integral, make sure to replace
+    $u$ by the equivalent expression of the original variable.
+  \item Working with a definite integral, you may evaluate the result
+    of Step 3 at the transformed bounds of $u$ or evaluate the
+    antiderivate obtained in Step 4 at the original bounds.
+  \end{enumerate}
+  For the remainder of the lecture, we will work out practice examples.
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}
+    Compute:
+    \begin{enumerate}
+    \item $\ds \int_{2}^{3} \frac{1}{x\ln(x)} \d x$
+    \item $\ds \int_0^{16} \sqrt{4 - \sqrt{x}} \d x$
+    \end{enumerate}
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}
+    Compute:
+    \begin{enumerate}
+    \item $\ds \int \frac{\sec(y) \tan(y) + \sec^2(y)}{\sec(y) + \tan(y)} \d y$
+    \item $\ds \int \tan(x) \d x$
+    \end{enumerate}
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}
+    Compute:
+    \begin{enumerate}
+    \item $\ds \int \frac{u}{1-u^2} \d u$
+    \item $\ds \int \frac{e^{2x}}{1 - e^{2x}} \d x$
+    \end{enumerate}
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}
+    Compute:
+    \begin{enumerate}
+    \item $\ds \int x^3\sqrt{1-x^2}\d x$
+    \end{enumerate}
+  \end{example}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Work}
+  Suppose the force $F(s)$ is applied to an object and moves it from
+  $s = s_0$ to $s = s_1$. Then the work done on the object over the
+  course of motion is given by
+  \[
+    W = \int_{s_0}^{s_1} F(s) \d s .
+  \]
+
+  The international standard unit of force is a \textbf{Joule}, which
+  is defined to be
+  \[
+    1\unit{J} = 1\unit{N}\cdot\unit{m}.
+  \]
+
+  In words, work measures the accumulated force over a distance. Note
+  that we only accumulate force in the \textit{direction} or
+  \textit{opposite direction} of motion.
+\end{frame}
+
+
+\begin{frame}
+  \vs
+  \begin{example}
+    If an apple has a mass of $0.1\unit{kg}$, how much work is required
+    to lift this 1 meter above the ground? Assume that the gravitational
+    acceleration is $-9.8\unit{m}/\unit{s}^2$.
+  \end{example}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Kinetic Energy}
+  Now suppose that an object of mass $m$ is moving at velocity $v(t)$.
+  The \textbf{kinetic energy} $E_k$ is the amount of \textit{energy}
+  that an object possesses from its motion. It is defined by
+  \[
+    E_k = \frac{m  v^2}{2}.
+  \]
+
+  The SI unit of energy is also a \textbf{Joule} since
+  $1\unit{N} = 1\unit{kg}\cdot\unit{m}/\unit{s}^2$:
+  \[
+    1\unit{J} = 1\unit{kg}\cdot \unit{m}^2/\unit{s}^2 .
+  \]
+\end{frame}
+
+
+\begin{frame}
+  \vs
+  \begin{example}
+    Now the apple is dropped from the height of 1 meter. How much
+    kinetic energy is released when it hits the ground?
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Work-Energy Theorem}
+  We observe that the work and the energy calculated above are the
+  same with the same unit. This is not a coincidence and this
+  phenomenon can be explained via the \textbf{Work-Energy Theorem}.
+
+  \begin{thm}[Work-Energy Theorem]
+    Suppose that an object of mass $m$ is moving along a straight
+    line. If $s_0$ and $s_1$ are the the starting and ending positions,
+    $v_0$ and $v_1$ are the the starting and ending velocities, and
+    $F(s)$ is the force acting on the object at any given position,
+    then
+    \[
+      W = \int_{s_0}^{s_1} F(s) \d s
+      = \frac{m v_1^2}{2} - \frac{m v_0^2}{2}.
+    \]
+    In other words, the total work done by the force is equal to the net
+    change in kinetic energy.
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Explanation}
+  \begingroup
+  \footnotesize
+  Let $t_{0,1}$ be the initial and terminal time of the motion
+  respectively, so that we can write $s_{0,1} = s(t_{0,1})$
+  respectively. Then the work formula can be written as
+  \[
+    W = \int_{s(t_0)}^{s(t_1)} F(s) \d s = \int_{t_0}^{t_1} F(s(t)) s'(t) \d t ,
+  \]
+  where the second equality is due to the substitution rule with
+  $u = s(t)$. By Newton's second law of motion
+  $F(s(t)) = m a(t)$, we can write
+  \[
+    \int_{t_0}^{t_1} F(s(t)) s'(t) \d t = \int_{t_0}^{t_1} m a(t) s'(t) \d t
+    = m \int_{t_0}^{t_1} a(t) s'(t) \d t .
+  \]
+  Remembering that $a(t) = v'(t)$ and $s'(t) = v(t)$, we can write the
+  integrand solely in terms of $v$ and its derivative, i.e.,
+  \[
+    m \int_{t_0}^{t_1} a(t) s'(t) \d t = m \int_{t_0}^{t_1} v(t) v'(t) \d t .
+  \]
+  Another substitution $u = v(t)$ with new bounds $v_0 = v(t_0)$ and
+  $v_1 = v(t_1)$ yields the desired result.
+  \[
+    m \int_{t_0}^{t_1} v(t) v'(t) \d t = m \int_{v_0}^{v_1} u \d u
+    = m \eval{ \frac{u^2}{2} }_{v_0}^{v_1}
+    = \frac{m v_1^2}{2} - \frac{m v_0^2}{2}.
+  \]
+  \endgroup
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

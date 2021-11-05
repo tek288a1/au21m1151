@@ -1,0 +1,150 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 35: Antiderivatives and Area (AAA)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Relating antiderivatives and
+    areas}
+
+  In investigating connection between antiderivatives and area, we
+  will use our favorite position-velocity-acceleration triple for
+  illustration.
+
+  \vs
+
+  \textbf{Displacement vs. distance.}\\
+  \vspace{0.5em}
+  Consider a moving object (in 1-D) from time $t = a$ to $t = b$. The
+  \textit{displacement} measures the difference in position. In other
+  words,
+  \[
+    (\text{displacement})
+    = (\text{terminal position}) - (\text{initial position})
+    = s(b) - s(a) \,.
+  \]
+
+  \textbf{Note:}
+  \begin{itemize}
+  \item When an object moves without changing directions, the (traveled)
+    distance equals the absolute value of displacement.
+  \item However, when it changes directions along the course of
+    movement, they are going to be different.
+  \item In particular, distance is always going to be positive, but
+    displacement may be negative.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Simple case:  uniform velocity}
+  Now consider a simple situation where an object is moving at a
+  constant velocity $v_{0}$ for $a \le t \le b$. Then the displacement
+  is simply the velocity multiplied by the time traveled, i.e.,
+
+  \[
+    (\text{displacement}) = v_0 (b-a)\,. \tag{constant velocity}
+  \]
+
+  \begin{itemize}
+  \item The graph of velocity against time is a horizontal line.
+  \item The displacement is exactly equal to the (signed) area of rectangle
+    between the velocity curve (i.e., the straight line) and the
+    horizontal time axis on $[a, b]$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Motion with changing velocity}
+  Then how would we calculate the displacement when the
+  object is moving at a varying velocity?
+
+  \begin{itemize}
+  \item Assuming that it moves at a constant velocity over a small
+    interval of time, we can approximate displacement using Riemann
+    sums;
+  \item The quality of approximation improves as we increase the number of
+    approximating rectangles;
+  \item We obtain the exact displacement once
+    we take the limit of general Riemann sum as the number $n$ of
+    rectangles approaches infinity, that is
+    \[
+      (\text{displacement})
+      =  \int_a^b v(t) \; dt \,. \tag{variable velocity}
+    \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The connection}
+  \begin{itemize}
+  \item   But recall that the displacement is the difference between the
+    terminal and initial positions, i.e., $s(b)-s(a)$. Thus
+    \[
+      \int_a^b v(t) \; dt = s(b) - s(a) \,. \tag{$\star$}
+    \]
+  \item   Noting that $s'(t) = v(t)$, i.e., $s(t)$ is an antiderivative of
+    $v(t)$, we may interpret the equation ($\star$) in a general setting
+    as:
+    \vspace{0.5em}
+    \begin{center}
+      \begin{minipage}{0.9\linewidth}
+        \textit{
+          The net \blue{\textbf{area}} between the curve $y = f(x)$ and the $x$-axis on $[a,
+          b]$ is the difference of values of its \blue{\textbf{antiderivative}} at the endpoints.
+        }
+      \end{minipage}
+    \end{center}
+    \vspace{0.5em}
+  \item The statement above can be written as
+    \[
+      \int_a^b f(x) \; dx = F(b) - F(a) \,,
+    \]
+    where $F$ is an antiderivative of $f$. This is the celebrated
+    Fundamental Theorem of Calculus.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example}
+  \begin{question}
+    Assume an object is moving along a straight line with the velocity
+    $v(t) = 3 - 3t^2$ for $0 \le t \le 2$. Find the displacement of the
+    object over the time interval $[0, 4]$.
+  \end{question}
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

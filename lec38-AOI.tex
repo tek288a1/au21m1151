@@ -1,0 +1,309 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 38: Applications of Integration (AOI)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\subsection{Net Change and Future Value}
+\begin{frame}
+  \frametitle{Net change and future value}
+  Recall the following formulas for net change and future value:
+  \begin{itemize}
+  \item \textbf{Net change:} $\ds \int_a^b Q'(s) \d s = Q(b) - Q(a)$
+  \item \textbf{Future value:} $\ds Q(t) = Q(0) + \int_0^t Q'(s) \d s$
+  \end{itemize}
+
+  Equipped with this, we will now refine our understanding of the
+  relationship between position and velocity.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Velocity and displacement}
+  Let $v(t)$ be the \dfn{velocity} of an object at time $t$. This
+  represents the ``rate of change in position'' at time $t$. Let $s(t)$ be
+  the \dfn{position} of an object at time $t$. This gives location
+  with respect to the origin.
+  \begin{itemize}
+  \item If we can assume that
+    $s(a) = 0$, then by the future value formula
+    \[
+      s(t) = \int_a^t v(x) \d x.
+    \]
+  \item $s(b) -s(a)$ is the \dfn{displacement}, the distance between
+    the starting and finishing locations.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Speed and distance}
+  Velocity and displacement are values containing not only information
+  about {``magnitude''} but also of {``direction''} that is relative
+  to some fixed point. On the other hand, there are values without
+  {``direction''} information. For instance:
+  \begin{itemize}
+  \item $|v(t)|$ is the \dfn{speed}.
+  \item $\ds \int_a^b |v(t)| \d t$ is the \dfn{distance} traveled.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begingroup
+  \small
+  \begin{example}
+    Consider a particle whose velocity at time $t$ is given by $v(t) = \sin(t)$.
+    \begin{enumerate}
+    \item What is the displacement of the particle from $t = 0$ to
+      $t = \pi$?
+    \item What is the displacement of the particle from $t = 0$ to
+      $t = 2\pi$?
+    \item What is the distance traveled by the particle from $t = 0$ to
+      $t = \pi$?
+    \item What is the distance traveled by the particle from $t = 0$ to
+      $t = 2\pi$?
+    \end{enumerate}
+  \end{example}
+  \endgroup
+  \vs
+  \hfill
+  \begin{minipage}{0.5\linewidth}
+    \begin{image}[0.99\linewidth]
+      \begin{tikzpicture}[
+        declare function = {f(\x) = sin(deg(\x));}]
+        \begin{axis}[
+          domain=-.2:7, xmin =-.2,xmax=7,ymax=1.2,ymin=-1.2,
+          width=4in,
+          height=2in,xtick={3.141,6.282},
+          xticklabels={$\pi$, $2\pi$},
+          ytick style={draw=none},
+          yticklabels={},
+          axis lines=center, xlabel=$t$, ylabel=${y=\sin(t)}$,
+          every axis y label/.style={at=(current axis.above origin),anchor=south},
+          every axis x label/.style={at=(current axis.right of origin),anchor=west},
+          axis on top,
+          ]
+          \addplot [very thick,penColor, smooth] {f(x)};
+        \end{axis}
+      \end{tikzpicture}
+    \end{image}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begingroup
+  \small
+  \begin{example}
+    An experiment is conducted in which a culture of bacteria is grown
+    in a controlled lab environment. The initial population was
+    estimated at 100 cells. The growth rate of the population $P(t)$ is
+    estimated to be $P'(t) = 4/(1+t^2)$ cells per day.
+    \begin{enumerate}
+    \item By how much has the population grown during the first day of
+      the experiment?
+    \item Find the population at any time $t\ge0$.
+    \end{enumerate}
+  \end{example}
+  \endgroup
+\end{frame}
+
+\subsection{Average Value}
+
+\begin{frame}
+  \frametitle{Alternate interpretation of definite integrals}
+  Our framework of choice in interpreting definite integrals was
+  {``signed area''} between a curve and the horizontal axis, which
+  also provides a very good visualization of integration process.  An
+  alternate way to understand integrals is to relate them to
+  \textit{average values}.
+
+  \begin{itemize}
+  \item Recall that the average of $n$ discrete data
+    $\{f_1, f_2, f_3, \ldots, f_n\}$ is given by
+    \[
+      \frac{f_1 + f_2 + \cdots + f_n}{n} = \frac{1}{n} \sum_{k=1}^n f_k \,.
+      \tag{average; discrete}
+    \]
+  \item Now suppose you want to find the average value of a certain quantity
+    that changes {``continuously''} over some interval, e.g., the
+    temperature of water in my electric kettle from 6 a.m. to noon.
+  \item In general terms, we want to find the average value of the function
+    $f(t)$ over $[a,b]$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Approximate average value of a function}
+  A natural way to approximate the average value $f(t)$ over $[a,b]$
+  is:
+  \begin{enumerate}
+  \item partition the domain into $n$ equal subintervals,
+    \[
+      a = t_0 < t_1 < \cdots < t_n = b \,,
+    \]
+  \item collect data $f(t_1), f(t_2), \cdots, f(t_n)$ at the end of
+    each subinterval,
+  \item take the average of this $n$ data:
+    \[
+      \frac{1}{n} \sum_{k=1}^n f(x_k) \,.
+    \]
+  \end{enumerate}
+
+  If $n$ is small, we get a coarse estimate of the true average;
+  sampling more frequently, i.e, increasing $n$, we get a better
+  estimate. When $n$ approaches $\infty$, we will have the true
+  average value. But before we send this to limit as $n \to \infty$,
+  we need a small touch-up on the previous expression.
+
+  \note{
+    Multiplying by $1 = (b-a)/(b-a)$ and shuffling some terms, the
+    previous approximate average becomes
+    \[
+      \frac{1}{b-a} \sum_{k=1}^n f(x_k) \underbrace{\frac{b-a}{n}}_{= \Delta x} \,,
+    \]
+    a right Riemann sum of $f$ on $[a,b]$ divided by $b-a$! Passing to
+    the limit, we obtain the following average formula:
+
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Average value of a function}
+  \begin{defn}
+    Let $f$ be continuous on $[a,b]$. The \textbf{average value} of $f$
+    on $[a,b]$ is given by
+    \[
+      \frac{1}{b-a} \int_a^b	f(x) \; dx \,.
+    \]
+  \end{defn}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}
+    Find the average height of points on the upper-half unit circle.
+  \end{example}
+  \vs
+  \hfill
+  \begin{minipage}{0.4\linewidth}
+    \begin{image}[0.9\linewidth]
+      \begin{tikzpicture}[
+        declare function = {f(\x) = sin(deg(\x));}]
+        \begin{axis}[
+          domain=-3:3, xmin =-1.2,xmax=1.2,ymax=1.2,ymin=-.2,
+          width=3in,
+          height=2in,xtick={-1,1},
+          xticklabels={$-1$, $1$},
+          ytick style={draw=none},
+          yticklabels={},
+          axis lines=center, xlabel=$x$, ylabel=$y$,
+          every axis y label/.style={at=(current axis.above origin),anchor=south},
+          every axis x label/.style={at=(current axis.right of origin),anchor=west},
+          axis on top,
+          ]
+          \addplot [penColor, very thick, smooth, domain=(0:180)] ({cos(x)},{sin(x)});
+        \end{axis}
+      \end{tikzpicture}
+    \end{image}
+  \end{minipage}
+\end{frame}
+
+
+\subsection{Mean Value Theorem for Integrals}
+\begin{frame}
+  \frametitle{Another MVT}
+  Having seen how the average value (that is, the mean value) of a
+  function is calculated using a definite integral, we are now ready
+  for the following version of mean value theorem.
+
+  \begin{thm}[The Mean Value Theorem for integrals]
+    Let $f$ be continuous on $[a,b]$. There exists a value $c$ in $[a,b]$
+    such that
+    \[
+      \int_a^bf(x)\d x = f(c)(b-a).
+    \]
+  \end{thm}
+
+  \textbf{Note.} This is an \textit{existence} theorem just as its
+  differential counterpart. It states that
+  \begin{quote}
+    \textbf{The average value of a continuous function falls within the
+      range of the function.}
+  \end{quote}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Illustration}
+  The following is a visual description of the integral MVT:
+  \begin{image}
+    \begin{tikzpicture}[
+      declare function = {f(\x) = -sin(deg(\x)) + 3;}]
+      \begin{axis}[
+        domain=-.2:7, xmin =-.2,xmax=7,ymax=5,ymin=-.7,
+        width=4in,
+        height=2in,xtick={1,6},
+        xticklabels={$a$,$b$},
+        ytick style={draw=none},
+        yticklabels={},
+        axis lines=center, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        axis on top,
+        ]
+        \foreach \rectnumber in {1}
+        {
+          \addplot [draw=penColor,fill=fillp] plot coordinates
+          {({1+(\rectnumber - 1) * 5},{3.08})
+            ({1+(\rectnumber) * 5},{3.08})} \closedcycle;
+        };
+        \addplot [very thick,penColor, smooth] {f(x)};
+        \node[black] at (axis cs:3.5,1.5) {$\ds \int_a^b f(x) \d x$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}
+    Consider $\ds \int_0^\pi \sin x \d x$. Find a value $c$
+    guaranteed by the Mean Value Theorem.
+  \end{example}
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,361 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 31-32: Approximating the Area \\ Under a Curve (ATAUAC)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introduction to Sigma Notation}
+  \begingroup
+  \small
+  \textit{Sigma notation} is a way of writing a sum of many terms in a
+  concise form. For example,
+  \[
+    \sum_{k=1}^{5} 3k \,.
+  \]
+  \begin{itemize}
+  \item The $\Sigma$ (sigma) indicates that a sum is being taken.
+  \item The variable $k$ is called the (summation) \textit{index}.
+  \item The numbers at the top and bottom of the $\Sigma$ are called the
+    \textit{upper and lower limits} of the summation.
+  \item The expression following $\Sigma$ is called the \textit{summand} formula
+    which gives a recipe for the terms to be added up.
+  \item The notation altogether means that we will take every integer
+    value of $k$ between 1 and 5, plug them each into $3k$, and then
+    add them all up:
+    \[
+      \sum_{k=1}^{5} 3k = 3\cdot 1 + 3\cdot 2 + 3\cdot 3 + 3\cdot 4 + 3\cdot 5 = 45 \,.
+    \]
+  \item The index does not have to be $k$. Popular choices include
+    $i, j, k, m$, and $n$. For instance:
+  \end{itemize}
+  \endgroup
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Write out what is meant by the following:
+    \[
+      \sum_{k=0}^{3} \frac{1}{k+1} \,.
+    \]
+  \end{question}
+  \vfill
+  \begin{question}
+    Write out what is meant by the following:
+    \[
+      \sum_{i=1}^{8} \left(-1\right)^i \,.
+    \]
+  \end{question}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begingroup
+  \small
+  Now let's work backward.
+
+  \vs
+  \begin{question}
+    Write the following sum in sigma notation.
+    \[
+      2 + 4 + 6 + 8 + \ldots + 22 + 24
+    \]
+  \end{question}
+  \vfill
+  \begin{question}
+    Write the following sum in sigma notation.
+    \[
+      1 - \frac{1}{2} + \frac{1}{4} - \frac{1}{8} +
+      \cdots - \frac{1}{64} + \frac{1}{128}
+    \]
+  \end{question}
+  \vfill
+  \begin{question}
+    Write the following sum in sigma notation.
+    \[
+      \frac{1}{\sqrt{2}} - \frac{2}{\sqrt{3}} + \frac{3}{\sqrt{4}} -
+      \frac{4}{\sqrt{5}}+ \ldots + \frac{51}{\sqrt{52}} -
+      \frac{52}{\sqrt{53}}
+    \]
+  \end{question}
+  \vfill
+  \endgroup
+\end{frame}
+
+\begin{frame}
+  \frametitle{Calculating with Sigma Notation}
+  The following formulas written in terms of sigma notation will be useful.
+
+  \begin{description}
+  \item \textbf{Formula 1.} $\displaystyle \sum_{k=1}^n C = nC$.
+  \item \textbf{Formula 2.} $\displaystyle \sum_{k=1}^n k = \frac{n(n+1)}{2}$.
+  \item \textbf{Formula 3.} $\displaystyle \sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}$.
+  \item \textbf{Formula 4.} $\displaystyle \sum_{k=1}^{n} (a_k + b_k) = \sum_{k=1}^n a_k + \sum_{k=1}^n b_k$.
+  \item \textbf{Formula 5.} $\displaystyle \sum_{k=1}^{n} c \cdot a_k = c \sum_{k=1}^n a_k$.
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{question}
+    Find the value of the sum
+    $\displaystyle \sum_{k=1}^{10} \left(2k^2+5\right)$.
+  \end{question}
+
+  \vfill
+  \begin{question}
+    Find the value of the sum
+    $\displaystyle \sum_{k=1}^{200} \left(-6k^2+3\right)$.
+  \end{question}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Rectangles and Areas}
+
+  Our goal here is to compute the area between the curve $y = f(x)$
+  and the horizontal axis on the interval $[a,b]$.
+
+  \begin{image}[0.45\linewidth]
+    \begin{tikzpicture}[
+      declare function = {f(\x) = -sin(deg(\x)) + 3;}]
+      \begin{axis}[
+        domain=-.2:7, xmin =-.2,xmax=7,ymax=5,ymin=-.2,
+        width=6in,
+        height=3in,
+        xtick={1,6},
+        xticklabels={$a$,$b$},
+        ytick style={draw=none},
+        yticklabels={},
+        axis lines=center, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        axis on top,
+        ]
+        \addplot [draw=none,fill=fillp,domain=1:6, smooth] {f(x)}
+        \closedcycle; \addplot [very thick,penColor, smooth] {f(x)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+
+  We approximate this area with $n$ rectangles of equal with
+  $\Delta x = (b-a)/n$ as follows:
+
+  \begin{image}[0.45\linewidth]
+    \begin{tikzpicture}[
+      declare function = {f(\x) = -sin(deg(\x)) + 3;}]
+      \begin{axis}[
+        domain=-.2:7, xmin =-.2,xmax=7,ymax=5,ymin=-.7,
+        width=6in,
+        height=3in,xtick={1,6},
+        xticklabels={$a$,$b$},
+        ytick style={draw=none},
+        yticklabels={},
+        axis lines=center, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        axis on top,
+        ]
+        \foreach \rectnumber in {1,2,...,5}
+        {
+          \addplot [draw=penColor,fill=fillp] plot coordinates
+          {({1+(\rectnumber - 1) * 1},{f(1+\rectnumber * 1)})
+            ({1+(\rectnumber) * 1},{f(1+\rectnumber * 1) })} \closedcycle;
+
+          \addplot[decoration={brace,mirror,raise=.2cm},decorate,thin] plot coordinates
+          {(\rectnumber+.1,0)
+            (1+\rectnumber-.1,0)};
+        };
+        \addplot [very thick,penColor, smooth] {f(x)};
+        \node at (axis cs:1.5,-.5) {$\Delta x$};
+        \node at (axis cs:2.5,-.5) {$\Delta x$};
+        \node at (axis cs:3.5,-.5) {$\Delta x$};
+        \node at (axis cs:4.5,-.5) {$\Delta x$};
+        \node at (axis cs:5.5,-.5) {$\Delta x$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+\begin{frame}
+  \frametitle{More Rectangles}
+
+  As we divide the interval $[a,b]$ into finer and finer subintervals
+  and construct more approximating rectangles, we are more closely
+  approximating the exact area we are interested in:
+
+  \begin{image}
+    \begin{tikzpicture}[
+      declare function = {f(\x) = -sin(deg(\x)) + 3;}]
+      \begin{axis}[
+        domain=-.2:7, xmin =-.2,xmax=7,ymax=5,ymin=-.7,
+        width=6in,
+        height=3in,xtick={1,6},
+        xticklabels={$a$,$b$},
+        ytick style={draw=none},
+        yticklabels={},
+        axis lines=center, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        axis on top,
+        ]
+        \foreach \rectnumber in {1,2,...,30}
+        {
+          \addplot [draw=penColor,fill=fillp] plot coordinates
+          {({1+(\rectnumber - 1) * 5/30},{f(1+\rectnumber * 5/30)})
+            ({1+(\rectnumber) * 5/30},{f(1+\rectnumber * 5/30) })} \closedcycle;
+        };
+        \addplot [very thick,penColor, smooth] {f(x)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Key Idea}
+  We could find the area exactly if we could compute the
+  limit as the width of the rectangles goes to zero and the number of
+  rectangles goes to infinity.
+
+  In order to make this argument precise, we need to establish some
+  notations to help with calculation.
+
+  \begin{itemize}
+  \item When approximating an area with $n$ rectangles, the \textbf{grid points}
+    \[
+      x_0, x_1, x_2, \ldots, x_n
+    \]
+    are the $x$-coordinates that determine the edges of the
+    rectangles. In particular,
+    \[
+      x_k = a + k \Delta x \,.
+    \]
+  \item When approximating an area with rectangles, a \dfn{sample point} is
+    the $x$-coordinate that determines the height of $k^{th}$
+    rectangle. For $k=1,..., n$, we denote a sample point as $x_k^*$
+    and the value $f( x_k^*)$ is the height of the $k^{th}$
+    rectangle.
+  \item We will use either left-endpoints, right-endpoints, or midpoints as
+    sample points.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Riemann Sums and Approximating Area}
+  We now have a general formula for approximation of area with $n$ rectangles:
+  \begin{align*}
+    \text{Area} &\approx \sum_{k=1}^n (\text{height of $k$th rectangle})\times(\text{width of $k$th rectangle}) \\
+                &=  f(x_1^*)\Delta x +  f(x_2^*)\Delta x +   f(x_3^*)\Delta x + \dots +   f(x_n^*)\Delta x
+                  =\sum_{k=1}^n  f(x_k^*)\Delta x \,.
+  \end{align*}
+
+  This approximating sum is called a \textbf{Riemann sum} of $f$ on the
+  interval $[a, b]$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Schematic}
+  The following is a schematic of a left Riemann sum
+  where sample points are collected from left-endpoints of each
+  subinterval:
+
+  \begin{image}
+    \begin{tikzpicture}[
+      declare function = {f(\x) = -sin(deg(\x)) + 3;}]
+      \begin{axis}[
+        domain=-.2:7, xmin =-.2,xmax=7,ymax=5,ymin=-.7,
+        width=6in,
+        height=3in,
+        xtick style={draw=none},
+        xticklabels={},
+        ytick style={draw=none},
+        yticklabels={},
+        axis lines=center, xlabel=$x$, ylabel=$y$,
+        every axis y label/.style={at=(current axis.above origin),anchor=south},
+        every axis x label/.style={at=(current axis.right of origin),anchor=west},
+        axis on top,
+        ]
+        \foreach \rectnumber in {1,2,...,5}
+        {
+          \addplot [draw=penColor,fill=fillp] plot coordinates
+          {({1+\rectnumber-1) * 5/5},{f(1+(\rectnumber-1) * 5/5)})
+            ({(1+\rectnumber) * 5/5},{f(1+(\rectnumber-1) * 5/5) })} \closedcycle;
+          \addplot[decoration={brace,mirror,raise=.2cm},decorate,thin] plot coordinates
+          {(\rectnumber+.1,0)
+            (1+\rectnumber-.1,0)};
+        };
+        \addplot [very thick,penColor, smooth] {f(x)};
+        \addplot[decoration={brace,raise=.2cm},decorate,thin] plot coordinates
+        {(.95,.1) (.95,{f(1)-.1})};
+        \addplot[decoration={brace,mirror,raise=.2cm},decorate,thin] plot coordinates
+        {(6.05,.1) (6.05,{f(5)-.1})};
+        \node at (axis cs:1.5,-.5) {$\Delta x$};
+        \node at (axis cs:2.5,-.5) {$\Delta x$};
+        \node at (axis cs:3.5,-.5) {$\Delta x$};
+        \node at (axis cs:4.5,-.5) {$\Delta x$};
+        \node at (axis cs:5.5,-.5) {$\Delta x$};
+
+        \node at (axis cs:1.5,1) {\large$f(x_1^*)\Delta x$};
+        \node at (axis cs:2.5,1) {\large$f(x_2^*)\Delta x$};
+        \node at (axis cs:3.5,1) {\large$f(x_3^*)\Delta x$};
+        \node at (axis cs:4.5,1) {\large$f(x_4^*)\Delta x$};
+        \node at (axis cs:5.5,1) {\large$f(x_5^*)\Delta x$};
+
+        \node[anchor=east] at (axis cs:.8,{f(1)/2}) {$f(x_1^*)$};
+        \node[anchor=west] at (axis cs:6.2,{f(5)/2}) {$f(x_5^*)$};
+
+        \node[anchor=south] at (axis cs:1,{f(1)}) {$f(x_1^*)$};
+        \node[anchor=south] at (axis cs:2,{f(2)}) {$f(x_2^*)$};
+        \node[anchor=south] at (axis cs:3,{f(3)}) {$f(x_3^*)$};
+        \node[anchor=south] at (axis cs:4,{f(4)}) {$f(x_4^*)$};
+        \node[anchor=south] at (axis cs:5,{f(5)}) {$f(x_5^*)$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{image}
+
+  The associated Riemann sum is
+  \[
+    \sum_{k=1}^5  f(x_k^*)\Delta x  = f(x_1^*)\Delta x +  f(x_2^*)\Delta x +   f(x_3^*)\Delta x + f(x_4^*)\Delta x + f(x_5^*)\Delta x.
+  \]
+\end{frame}
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

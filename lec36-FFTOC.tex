@@ -1,0 +1,179 @@
+% \documentclass[10pt,t,presentation,ignorenonframetext,aspectratio=169]{beamer}
+\documentclass[10pt,t,handout,ignorenonframetext,aspectratio=169]{beamer}
+\usepackage[default]{lato}
+\usepackage{tk_beamer1}
+\input{tk_packages}
+\input{tk_macros}
+\input{tk_environ}
+\input{tk_ximera}
+\usepackage{wasysym}            % for smiley
+\newcommand{\zoz}{$\mathbf{ \frac{0}{0} }$}
+
+% some inverse trigs
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
+%%%% META DATA
+\newcommand{\semester}{Autumn 2021}
+\newcommand{\course}{Math 1151}
+\newcommand{\lecTitle}{Lecture 36: First Fundamental Theorem \\ of Calculus (FFTOC)}
+
+%%%% TITLE PAGE
+\title[\course]{\lecTitle}
+\institute[Ohio State]
+{
+  \medskip
+}
+\date[\week]{\semester}
+\author{Tae Eun Kim, Ph.D.}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\subsection{Accumulation Function}
+\begin{frame}
+  \frametitle{Accumulation functions}
+  \begin{defn}
+    Given a function $f$, an \textbf{accumulation function} is
+    \[
+      F(x) = \int_a^x f(t) \; dt
+    \]
+  \end{defn}
+
+  \begin{itemize}
+  \item It calculates the signed area of the region between $y = f(t)$ and $t$-axis over the interval $[a, x]$ where the location of right-endpoint is now a variable.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}[Rectangles]
+    Let $\ds F(x) = \int_{-3}^x 4 \; dt$. What is $F(5)$? What is
+    $F(-5)$? What is $F(x)$?
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}[Trapezoid]
+    Let $\ds F(x) = \int_0^x (2t+1) \; dt$. Find $F(x)$.
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \begin{example}[Monotonicity of accumulation function]
+    Let $\ds F(x) = \int_{-1}^x t^3 \; dt$. On the interval $[-1, 1]$,
+
+    \begin{enumerate}
+    \item Where is $F$ increasing/decreasing?
+    \item When does $F$ have local
+      extrema?
+    \item Answer the same questions with the interval replaced by
+      $(-\infty, \infty)$.
+    \end{enumerate}
+  \end{example}
+\end{frame}
+
+
+
+\subsection{The First Fundamental Theorem of Calculus}
+
+\begin{frame}
+  \frametitle{Motivation}
+  Let $f$ be a continuous function on the real numbers and consider
+  \[
+    F(x)= \int_a^x f(t)\; dt \,.
+  \]
+  We know that
+  \begin{itemize}
+  \item $F$ is increasing when $f$ is positive;
+  \item $F$ is decreasing when $f$ is negative.
+  \end{itemize}
+
+  It is also clear that
+  \begin{itemize}
+  \item $F$ is concave up when $f'$ is positive;
+  \item $F$ is concave down when $f'$ is negative.
+  \end{itemize}
+
+  There must be a deep connection between $F'$ and $f$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{The First Fundamental Theorem of Calculus}
+  \begin{thm}[First Fundamental Theorem of Calculus, FTC1]
+    Suppose that $f$ is continuous on the real numbers and let
+    \[
+      F(x) = \int_a^x f(t) \; dt \,.
+    \]
+    Then
+    \[
+      F'(x) = \ddx \int_a^x f(t) \; dt = f(x) \,.
+    \]
+  \end{thm}
+
+  \textbf{Interpretation.}
+  \begin{itemize}
+  \item An accumulation function of $f$ is an antiderivative of $f$.
+  \item The rate at which the accumulated area under a curve grows is precisely described by the curve itself.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vs
+  \red{\textit{The idea of proof}.}
+  Assume $h>0$. Note that $F(x+h) - F(x)$ is the net area of the region whose base
+  is $[x, x+h]$ since
+  \[
+    F(x+h) - F(x) = \int_x^{x+h} f(t) \; dt \,.
+  \]
+  For sufficiently small $h$, the region is approximately rectagular
+  and so this region is approximately $f(x) h$, i.e.,
+  \[
+    F(x+h) - F(x) \approx f(x) h \,.
+  \]
+  Upon division by $h$, we obtain
+  \[
+    \frac{F(x+h) - F(x)}{h} \approx f(x) \,,
+  \]
+  which, in the limit as $h \to 0$, yields
+  \[
+    F'(x) = \lim_{h\to0} \frac{F(x+h) - F(x)}{h} = f(x) \,,
+  \]
+  as required. \qed{}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivatives of composed accumulation functions}
+
+  The following variation of the FTC1 is noteworthy:
+  \[
+    \ddx \int_a^{g(x)} f(t) \; dt = f(g(x)) g'(x) \,.
+  \]
+\end{frame}
+
+\begin{frame}
+  \vs
+  \question{} Find the derivative of
+  \begin{enumerate}
+  \item  $\ds \int_2^{x^2} \ln t \; dt$.
+    \vfill
+  \item $\ds \int_{\cos x}^{5} t^3 \; dt$.
+    \vfill
+  \item $\ds \int_{x^2}^x f(t) \; dt$.
+    \vfill
+  \end{enumerate}
+\end{frame}
+
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
